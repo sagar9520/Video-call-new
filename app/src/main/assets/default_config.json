@@ -1,0 +1,67 @@
+{
+  "virtual_label": "Virtual",
+  "welcome_gems": 50,
+  "msg_cost": 1,
+  "filter_cost": 5,
+  "rewarded_gems": 5,
+  "checkin": [50, 80, 50, 50, 50, 50, 100],
+  "payment_mode": "play",
+  "verify_url": "",
+  "privacy_url": "",
+  "hosts": [
+    {"id": "h1", "name": "Riya", "age": 23, "city": "Delhi", "lang": "Hindi", "bio": "Music aur dance pasand hai. Baat karte hain 😊", "tags": ["Music", "Dance"], "photos": [], "video": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4", "online": true, "rate": 60, "color": "#C86DD7"},
+    {"id": "h2", "name": "Anaya", "age": 25, "city": "Mumbai", "lang": "Hindi, English", "bio": "Travel aur movies ki shauqeen ✈", "tags": ["Travel", "Movies"], "photos": [], "video": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4", "online": true, "rate": 60, "color": "#FF6A88"},
+    {"id": "h3", "name": "Meera", "age": 24, "city": "Chennai", "lang": "Tamil, English", "bio": "Cooking aur books 📚", "tags": ["Cooking", "Books"], "photos": [], "video": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4", "online": false, "rate": 50, "color": "#7F7FD5"},
+    {"id": "h4", "name": "Sana", "age": 22, "city": "Lucknow", "lang": "Urdu, Hindi", "bio": "Shayari aur chai ☕", "tags": ["Poetry", "Music"], "photos": [], "video": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4", "online": true, "rate": 60, "color": "#F6A35C"},
+    {"id": "h5", "name": "Kavya", "age": 26, "city": "Bengaluru", "lang": "Kannada, English", "bio": "Gaming aur tech 🎮", "tags": ["Gaming", "Tech"], "photos": [], "video": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4", "online": true, "rate": 70, "color": "#43C6AC"},
+    {"id": "h6", "name": "Pooja", "age": 24, "city": "Jaipur", "lang": "Hindi", "bio": "Fashion aur photography 📸", "tags": ["Fashion", "Photos"], "photos": [], "video": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4", "online": false, "rate": 50, "color": "#EE9CA7"}
+  ],
+  "chat_script": [
+    {"type": "text", "text": "Hii 👋 kaise ho?", "delay": 2},
+    {"type": "text", "text": "Main demo host hoon, ye message server se aaya hai 😊", "delay": 4},
+    {"type": "image", "url": "https://picsum.photos/seed/chatsetu1/600/800", "delay": 6},
+    {"type": "voice", "url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3", "duration": 12, "delay": 8},
+    {"type": "video", "url": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4", "delay": 10},
+    {"type": "text", "text": "Video call pe baat karein? 😊", "delay": 12}
+  ],
+  "gifts": [
+    {"id": "rose", "name": "Rose", "emoji": "🌹", "price": 10, "category": "Hot"},
+    {"id": "kiss", "name": "Kiss", "emoji": "💋", "price": 30, "category": "Hot"},
+    {"id": "teddy", "name": "Teddy", "emoji": "🧸", "price": 80, "category": "Hot"},
+    {"id": "ring", "name": "Ring", "emoji": "💍", "price": 180, "category": "Hot"},
+    {"id": "choco", "name": "Choco", "emoji": "🍫", "price": 20, "category": "Love"},
+    {"id": "heart", "name": "Heart", "emoji": "💖", "price": 50, "category": "Love"},
+    {"id": "bouquet", "name": "Bouquet", "emoji": "💐", "price": 99, "category": "Love"},
+    {"id": "cake", "name": "Cake", "emoji": "🎂", "price": 120, "category": "Love"},
+    {"id": "car", "name": "Car", "emoji": "🚗", "price": 999, "category": "Luxury"},
+    {"id": "crown", "name": "Crown", "emoji": "👑", "price": 2000, "category": "Luxury"},
+    {"id": "yacht", "name": "Yacht", "emoji": "🛥", "price": 5000, "category": "Luxury"},
+    {"id": "castle", "name": "Castle", "emoji": "🏰", "price": 9999, "category": "Luxury"},
+    {"id": "diya", "name": "Diya", "emoji": "🪔", "price": 25, "category": "Festival"},
+    {"id": "rakhi", "name": "Sweets", "emoji": "🍬", "price": 40, "category": "Festival"},
+    {"id": "fireworks", "name": "Fireworks", "emoji": "🎆", "price": 300, "category": "Festival"},
+    {"id": "lantern", "name": "Lantern", "emoji": "🏮", "price": 150, "category": "Festival"}
+  ],
+  "packs": [
+    {"id": "gems_100", "gems": 7560, "price": "₹100", "off": "50%off", "cashfree_url": ""},
+    {"id": "gems_200", "gems": 8100, "price": "₹200", "off": "17%off", "cashfree_url": ""},
+    {"id": "gems_400", "gems": 16380, "price": "₹400", "off": "17%off", "cashfree_url": ""},
+    {"id": "gems_800", "gems": 32940, "price": "₹800", "off": "17%off", "cashfree_url": ""},
+    {"id": "gems_1600", "gems": 66600, "price": "₹1,600", "off": "30%off", "cashfree_url": ""},
+    {"id": "gems_4000", "gems": 167400, "price": "₹4,000", "off": "60%off", "cashfree_url": ""}
+  ],
+  "ads": {
+    "enabled": true,
+    "network": "admob",
+    "interstitial_every": 3,
+    "app_open": true,
+    "admob": {
+      "app_open": "ca-app-pub-3940256099942544/9257395921",
+      "banner": "ca-app-pub-3940256099942544/9214589741",
+      "interstitial": "ca-app-pub-3940256099942544/1033173712",
+      "rewarded": "ca-app-pub-3940256099942544/5224354917"
+    },
+    "max": {"app_open": "", "banner": "", "interstitial": "", "rewarded": ""}
+  },
+  "cross_promo": []
+}
