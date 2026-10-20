@@ -88,7 +88,7 @@ class MainActivity : ComponentActivity() {
 
     fun replace(r: Route) { stack[stack.lastIndex] = r }
 
-    fun reset(r: Route) { stack.clear(); stack.add(r) }
+    fun reset(r: Route) { android.util.Log.i("AppNav", "reset $r"); stack.clear(); stack.add(r) }
 
     fun back() {
         if (stack.size > 1) stack.removeAt(stack.lastIndex)
@@ -144,5 +144,5 @@ class MainActivity : ComponentActivity() {
     /** Gems kam hain: "Gems kam" popup, jisme Recharge / Free gems. */
     fun needGems() { lowGems = true }
 
-    fun toast(msg: String) = Toast.makeText(this, msg, Toast.LENGTH_SHORT).show()
+    fun toast(msg: String) { android.util.Log.i("AppToast", msg); Toast.makeText(this, msg, Toast.LENGTH_SHORT).show() }
 }

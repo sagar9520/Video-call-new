@@ -13,7 +13,9 @@ tap OK
 wait 1
 tap I am 18+
 tap Continue
-wait 4
+wait 1
+shot after_continue
+wait 3
 shot discover_checkin
 tap Claim
 wait 2

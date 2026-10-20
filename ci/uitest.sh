@@ -57,6 +57,6 @@ while IFS= read -r -u 3 line || [ -n "$line" ]; do
 done 3< "$STEPS"
 
 adb logcat -d -b crash > out/crash.txt
-adb logcat -d | grep -E "ActivityManager|ActivityTaskManager|AndroidRuntime|$PKG|System.err" | tail -400 > out/errors.txt
+adb logcat -d | grep -E "AppToast|AppNav|ActivityTaskManager|AndroidRuntime|System.err|DEBUG|libc" | tail -400 > out/errors.txt
 if grep -q "FATAL EXCEPTION" out/crash.txt; then echo "CRASH" > out/RESULT.txt; else echo "OK" > out/RESULT.txt; fi
 cat out/RESULT.txt
