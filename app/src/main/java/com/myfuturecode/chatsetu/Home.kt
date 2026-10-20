@@ -121,8 +121,9 @@ fun OnboardingScreen(act: MainActivity) {
     var agree by remember { mutableStateOf(false) }
     val age = dob?.let { Period.between(it, LocalDate.now()).years }
     DarkStatusBar()
+    Column(Modifier.fillMaxSize().background(Color.White).imePadding()) {
     Column(
-        Modifier.fillMaxSize().background(Color.White).verticalScroll(rememberScrollState()).imePadding(),
+        Modifier.weight(1f).verticalScroll(rememberScrollState()),
         horizontalAlignment = Alignment.CenterHorizontally,
     ) {
         Box(
@@ -163,11 +164,14 @@ fun OnboardingScreen(act: MainActivity) {
             FlowRow(horizontalArrangement = Arrangement.spacedBy(8.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
                 allInterests.forEach { t -> Pill(t, t in tags) { if (t in tags) tags.remove(t) else tags.add(t) } }
             }
-            Row(Modifier.fillMaxWidth().padding(top = 14.dp), verticalAlignment = Alignment.CenterVertically) {
+        }
+    }
+        // Neeche hamesha dikhne wala hissa: 18+ checkbox + Continue
+        Column(Modifier.fillMaxWidth().background(Color.White).navigationBarsPadding().padding(start = 20.dp, end = 20.dp, bottom = 12.dp)) {
+            Row(Modifier.fillMaxWidth().clickable { agree = !agree }.padding(vertical = 4.dp), verticalAlignment = Alignment.CenterVertically) {
                 Checkbox(agree, { agree = it }, colors = CheckboxDefaults.colors(checkedColor = Purple))
                 Text("I am 18+ and agree to the Terms, Privacy Policy and Community Guidelines", color = Color.Gray, fontSize = 12.sp)
             }
-            Spacer(Modifier.height(14.dp))
             GradientButton("Continue") {
                 when {
                     name.isBlank() -> act.toast("Please enter your name")
@@ -180,7 +184,6 @@ fun OnboardingScreen(act: MainActivity) {
                     }
                 }
             }
-            Spacer(Modifier.navigationBarsPadding().height(16.dp))
         }
     }
 }

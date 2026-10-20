@@ -5,6 +5,7 @@ wait 12
 shot onboarding
 tap Enter your name
 type Rahul
+key 111
 tap Select date
 wait 2
 shot datepicker
