@@ -117,9 +117,10 @@ class MainActivity : ComponentActivity() {
         var suggested = false
         var elapsed = 0
         while (true) {
-            kotlinx.coroutines.delay(5000); elapsed += 5
-            val onMain = route is Route.Main && recharge == null && !checkin && !lowGems
+            kotlinx.coroutines.delay(5000)
+            val onMain = route is Route.Main && recharge == null && !checkin && !lowGems && onlineSuggest == null
             if (!onMain) continue
+            elapsed += 5   // sirf Main screen pe bitaya time gina jaata hai
             if (!suggested && cfg.onlinePopupAfter > 0 && elapsed >= cfg.onlinePopupAfter) {
                 suggested = true
                 onlineSuggest = cfg.hosts.filter { it.online && it.id !in Store.blocked }.randomOrNull()

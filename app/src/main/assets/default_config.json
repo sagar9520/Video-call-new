@@ -30,7 +30,7 @@
         "Chai"
       ],
       "photos": [
-        "https://api.dicebear.com/9.x/lorelei/svg?seed=Riya&backgroundColor=ffd5dc",
+        "https://api.dicebear.com/9.x/adventurer/svg?seed=Riya&backgroundColor=ffd5dc&backgroundType=gradientLinear",
         "https://picsum.photos/seed/riya1/600/800",
         "https://picsum.photos/seed/riya2/600/800",
         "https://picsum.photos/seed/riya3/600/800",
@@ -108,7 +108,7 @@
         "Movies"
       ],
       "photos": [
-        "https://api.dicebear.com/9.x/lorelei/svg?seed=Anaya&backgroundColor=c0aede",
+        "https://api.dicebear.com/9.x/adventurer/svg?seed=Anaya&backgroundColor=c0aede&backgroundType=gradientLinear",
         "https://picsum.photos/seed/anaya1/600/800",
         "https://picsum.photos/seed/anaya2/600/800",
         "https://picsum.photos/seed/anaya3/600/800",
@@ -181,7 +181,7 @@
         "Books"
       ],
       "photos": [
-        "https://api.dicebear.com/9.x/lorelei/svg?seed=Meera&backgroundColor=d1d4f9",
+        "https://api.dicebear.com/9.x/adventurer/svg?seed=Meera&backgroundColor=d1d4f9&backgroundType=gradientLinear",
         "https://picsum.photos/seed/meera1/600/800",
         "https://picsum.photos/seed/meera2/600/800",
         "https://picsum.photos/seed/meera3/600/800",
@@ -254,7 +254,7 @@
         "Music"
       ],
       "photos": [
-        "https://api.dicebear.com/9.x/lorelei/svg?seed=Sana&backgroundColor=ffdfbf",
+        "https://api.dicebear.com/9.x/adventurer/svg?seed=Sana&backgroundColor=ffdfbf&backgroundType=gradientLinear",
         "https://picsum.photos/seed/sana1/600/800",
         "https://picsum.photos/seed/sana2/600/800",
         "https://picsum.photos/seed/sana3/600/800",
@@ -328,7 +328,7 @@
         "Trekking"
       ],
       "photos": [
-        "https://api.dicebear.com/9.x/lorelei/svg?seed=Kavya&backgroundColor=b6e3f4",
+        "https://api.dicebear.com/9.x/adventurer/svg?seed=Kavya&backgroundColor=b6e3f4&backgroundType=gradientLinear",
         "https://picsum.photos/seed/kavya1/600/800",
         "https://picsum.photos/seed/kavya2/600/800",
         "https://picsum.photos/seed/kavya3/600/800",
@@ -406,7 +406,7 @@
         "Photos"
       ],
       "photos": [
-        "https://api.dicebear.com/9.x/lorelei/svg?seed=Pooja&backgroundColor=f6d1ff",
+        "https://api.dicebear.com/9.x/adventurer/svg?seed=Pooja&backgroundColor=f6d1ff&backgroundType=gradientLinear",
         "https://picsum.photos/seed/pooja1/600/800",
         "https://picsum.photos/seed/pooja2/600/800",
         "https://picsum.photos/seed/pooja3/600/800",
@@ -479,7 +479,7 @@
         "Music"
       ],
       "photos": [
-        "https://api.dicebear.com/9.x/lorelei/svg?seed=Ishita&backgroundColor=ffd5dc",
+        "https://api.dicebear.com/9.x/adventurer/svg?seed=Ishita&backgroundColor=ffd5dc&backgroundType=gradientLinear",
         "https://picsum.photos/seed/ishita1/600/800",
         "https://picsum.photos/seed/ishita2/600/800",
         "https://picsum.photos/seed/ishita3/600/800",
@@ -552,7 +552,7 @@
         "Yoga"
       ],
       "photos": [
-        "https://api.dicebear.com/9.x/lorelei/svg?seed=Nisha&backgroundColor=c0aede",
+        "https://api.dicebear.com/9.x/adventurer/svg?seed=Nisha&backgroundColor=c0aede&backgroundType=gradientLinear",
         "https://picsum.photos/seed/nisha1/600/800",
         "https://picsum.photos/seed/nisha2/600/800",
         "https://picsum.photos/seed/nisha3/600/800",
@@ -625,7 +625,7 @@
         "Dramas"
       ],
       "photos": [
-        "https://api.dicebear.com/9.x/lorelei/svg?seed=Aditi&backgroundColor=d1d4f9",
+        "https://api.dicebear.com/9.x/adventurer/svg?seed=Aditi&backgroundColor=d1d4f9&backgroundType=gradientLinear",
         "https://picsum.photos/seed/aditi1/600/800",
         "https://picsum.photos/seed/aditi2/600/800",
         "https://picsum.photos/seed/aditi3/600/800",
@@ -703,7 +703,7 @@
         "Travel"
       ],
       "photos": [
-        "https://api.dicebear.com/9.x/lorelei/svg?seed=Tanya&backgroundColor=ffdfbf",
+        "https://api.dicebear.com/9.x/adventurer/svg?seed=Tanya&backgroundColor=ffdfbf&backgroundType=gradientLinear",
         "https://picsum.photos/seed/tanya1/600/800",
         "https://picsum.photos/seed/tanya2/600/800",
         "https://picsum.photos/seed/tanya3/600/800",
@@ -776,7 +776,7 @@
         "Food"
       ],
       "photos": [
-        "https://api.dicebear.com/9.x/lorelei/svg?seed=Neha&backgroundColor=b6e3f4",
+        "https://api.dicebear.com/9.x/adventurer/svg?seed=Neha&backgroundColor=b6e3f4&backgroundType=gradientLinear",
         "https://picsum.photos/seed/neha1/600/800",
         "https://picsum.photos/seed/neha2/600/800",
         "https://picsum.photos/seed/neha3/600/800",
@@ -849,7 +849,7 @@
         "Drives"
       ],
       "photos": [
-        "https://api.dicebear.com/9.x/lorelei/svg?seed=Simran&backgroundColor=f6d1ff",
+        "https://api.dicebear.com/9.x/adventurer/svg?seed=Simran&backgroundColor=f6d1ff&backgroundType=gradientLinear",
         "https://picsum.photos/seed/simran1/600/800",
         "https://picsum.photos/seed/simran2/600/800",
         "https://picsum.photos/seed/simran3/600/800",
@@ -1123,5 +1123,5 @@
   "cross_promo": [],
   "audio_rate": 30,
   "auto_message_every": 60,
-  "online_popup_after": 45
+  "online_popup_after": 90
 }

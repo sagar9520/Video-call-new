@@ -700,13 +700,13 @@ private fun OnlineCard(act: MainActivity, h: Host) {
     Dialog({ act.onlineSuggest = null }) {
         Column(Modifier.width(290.dp).clip(RoundedCornerShape(24.dp)).background(Color.White)) {
             Box(Modifier.fillMaxWidth().height(250.dp)) {
-                HostImage(h, Modifier.fillMaxSize(), index = 1, letterSize = 80.sp)
+                HostImage(h, Modifier.fillMaxSize(), index = 0, letterSize = 80.sp)
                 Row(Modifier.fillMaxWidth().padding(10.dp), horizontalArrangement = Arrangement.SpaceBetween) { VirtualTag(h); OnlineDot(true) }
                 Column(Modifier.align(Alignment.BottomStart).fillMaxWidth().background(Brush.verticalGradient(listOf(Color.Transparent, Color.Black.copy(alpha = .7f)))).padding(14.dp)) {
                     Text("${h.name}, ${h.age}", color = Color.White, fontWeight = FontWeight.ExtraBold, fontSize = 20.sp)
                     Text("is online now · ${h.city}", color = Color.White.copy(alpha = .85f), fontSize = 13.sp)
                 }
-                IconButton({ act.onlineSuggest = null }, Modifier.align(Alignment.TopEnd).padding(top = 30.dp)) { Icon(Icons.Default.Close, "Close", tint = Color.White) }
+                IconButton({ act.onlineSuggest = null }, Modifier.align(Alignment.TopEnd).padding(top = 30.dp).clip(CircleShape).background(Color.Black.copy(alpha = .3f))) { Icon(Icons.Default.Close, "Close", tint = Color.White) }
             }
             Row(Modifier.padding(14.dp), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
                 Box(Modifier.weight(1f).height(46.dp).clip(RoundedCornerShape(23.dp)).background(Lilac).clickable { act.onlineSuggest = null; act.push(Route.Chat(h.id)) }, contentAlignment = Alignment.Center) {
