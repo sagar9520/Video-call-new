@@ -1,0 +1,272 @@
+10-20 23:19:47.191   765  2727 E BackupHelper: 	at libcore.io.IoBridge.open(IoBridge.java:575)
+10-20 23:19:47.191   765  2727 E BackupHelper: 	at libcore.io.Linux.open(Native Method)
+10-20 23:19:47.191   765  2727 E BackupHelper: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:567)
+10-20 23:19:47.191   765  2727 E BackupHelper: 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:273)
+10-20 23:19:47.191   765  2727 E BackupHelper: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:567)
+10-20 23:19:47.191   765  2727 E BackupHelper: 	at libcore.io.IoBridge.open(IoBridge.java:561)
+10-20 23:19:48.030   518  1731 I ActivityTaskManager: START u0 {flg=0x10000000 cmp=com.myfuturecode.chatsetu/.MainActivity (has extras)} from uid 2000
+10-20 23:19:48.035   518  1731 W ActivityTaskManager: Can't find TaskDisplayArea to determine support for multi window. Task id=13 attached=false
+10-20 23:19:51.068  1130  2696 W libc    : Access denied finding property "ro.hardware.chipname"
+10-20 23:19:51.793  2434  2449 W libc    : Access denied finding property "persist.adb.tls_server.enable"
+10-20 23:19:51.794  2434  2449 W libc    : Access denied finding property "service.adb.tls.port"
+10-20 23:19:53.403  2434  2675 W libc    : Access denied finding property "persist.adb.tls_server.enable"
+10-20 23:19:53.403  2434  2675 W libc    : Access denied finding property "service.adb.tls.port"
+10-20 23:19:53.445   518   551 I ActivityTaskManager: Displayed com.myfuturecode.chatsetu/.MainActivity: +5s410ms
+10-20 23:19:54.976   518   695 W FileUtils: 	at libcore.io.Linux.chmod(Native Method)
+10-20 23:19:54.976   518   695 W FileUtils: 	at libcore.io.ForwardingOs.chmod(ForwardingOs.java:168)
+10-20 23:19:54.976   518   695 W FileUtils: 	at libcore.io.BlockGuardOs.chmod(BlockGuardOs.java:83)
+10-20 23:19:55.305  1130  2981 W libc    : Access denied finding property "ro.hardware.chipname"
+10-20 23:19:55.342  2434  2448 W libc    : Access denied finding property "persist.adb.tls_server.enable"
+10-20 23:19:55.342  2434  2448 W libc    : Access denied finding property "service.adb.tls.port"
+10-20 23:19:56.007  2434  2448 W libc    : Access denied finding property "persist.adb.tls_server.enable"
+10-20 23:19:56.007  2434  2448 W libc    : Access denied finding property "service.adb.tls.port"
+10-20 23:19:56.914  2434  2448 W libc    : Access denied finding property "persist.adb.tls_server.enable"
+10-20 23:19:56.914  2434  2448 W libc    : Access denied finding property "service.adb.tls.port"
+10-20 23:19:57.836   518   562 I SystemServerTimingAsync: ssm.onUnlockedUser-0_com.android.server.wm.ActivityTaskManagerService$Lifecycle
+10-20 23:19:57.854   518   562 D SystemServerTimingAsync: ssm.onUnlockedUser-0_com.android.server.wm.ActivityTaskManagerService$Lifecycle took to complete: 17ms
+10-20 23:19:58.043  3377  3413 I GAv4    :   adb shell setprop log.tag.GAv4 DEBUG
+10-20 23:19:58.732  2434  2448 W libc    : Access denied finding property "persist.adb.tls_server.enable"
+10-20 23:19:58.732  2434  2448 W libc    : Access denied finding property "service.adb.tls.port"
+10-20 23:19:59.516  2800  2800 I AppNav  : reset Onboarding
+10-20 23:20:01.131  2434  3052 W libc    : Access denied finding property "persist.adb.tls_server.enable"
+10-20 23:20:01.132  2434  3052 W libc    : Access denied finding property "service.adb.tls.port"
+10-20 23:20:02.407  2434  2449 W libc    : Access denied finding property "persist.adb.tls_server.enable"
+10-20 23:20:02.407  2434  2449 W libc    : Access denied finding property "service.adb.tls.port"
+10-20 23:20:04.657  2434  3813 W libc    : Access denied finding property "persist.adb.tls_server.enable"
+10-20 23:20:04.657  2434  3813 W libc    : Access denied finding property "service.adb.tls.port"
+10-20 23:20:05.977  2434  2710 W libc    : Access denied finding property "persist.adb.tls_server.enable"
+10-20 23:20:05.979  2434  2710 W libc    : Access denied finding property "service.adb.tls.port"
+10-20 23:20:06.575  2434  2751 W libc    : Access denied finding property "persist.adb.tls_server.enable"
+10-20 23:20:06.575  2434  2751 W libc    : Access denied finding property "service.adb.tls.port"
+10-20 23:20:06.607  2434  2710 W libc    : Access denied finding property "persist.adb.tls_server.enable"
+10-20 23:20:06.618  2434  2710 W libc    : Access denied finding property "service.adb.tls.port"
+10-20 23:20:08.099  2434  2710 W libc    : Access denied finding property "persist.adb.tls_server.enable"
+10-20 23:20:08.099  2434  2710 W libc    : Access denied finding property "service.adb.tls.port"
+10-20 23:20:09.772  2434  2448 W libc    : Access denied finding property "persist.adb.tls_server.enable"
+10-20 23:20:09.772  2434  2448 W libc    : Access denied finding property "service.adb.tls.port"
+10-20 23:20:16.529  4134  4134 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-20 23:20:16.558  4134  4134 I AndroidRuntime: Using default boot image
+10-20 23:20:16.558  4134  4134 I AndroidRuntime: Leaving lock profiling enabled
+10-20 23:20:16.558  4134  4134 W libc    : Access denied finding property "odsign.verification.success"
+10-20 23:20:17.005  4134  4134 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-20 23:20:19.323  4134  4134 D AndroidRuntime: Shutting down VM
+10-20 23:20:20.904  4286  4353 E GEL_DELAYED_EVENT_DEBUG: Failed delayed event dispatch, no dispatchers.
+10-20 23:20:23.544  4564  4581 I GAv4    :   adb shell setprop log.tag.GAv4 DEBUG
+10-20 23:20:25.885  2434  3813 W libc    : Access denied finding property "persist.adb.tls_server.enable"
+10-20 23:20:25.888  2434  3813 W libc    : Access denied finding property "service.adb.tls.port"
+10-20 23:20:26.525  4885  4885 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-20 23:20:26.543  4885  4885 I AndroidRuntime: Using default boot image
+10-20 23:20:26.543  4885  4885 I AndroidRuntime: Leaving lock profiling enabled
+10-20 23:20:26.543  4885  4885 W libc    : Access denied finding property "odsign.verification.success"
+10-20 23:20:26.759  4885  4885 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-20 23:20:27.719   518  1733 E RecoverySnapshotStorage: 	at libcore.io.IoBridge.open(IoBridge.java:575)
+10-20 23:20:27.719   518  1733 E RecoverySnapshotStorage: 	at libcore.io.Linux.open(Native Method)
+10-20 23:20:27.719   518  1733 E RecoverySnapshotStorage: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:567)
+10-20 23:20:27.719   518  1733 E RecoverySnapshotStorage: 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:273)
+10-20 23:20:27.719   518  1733 E RecoverySnapshotStorage: 	at libcore.io.IoBridge.open(IoBridge.java:561)
+10-20 23:20:27.909  4885  4885 D AndroidRuntime: Shutting down VM
+10-20 23:20:29.035  1130  4917 W libc    : Access denied finding property "ro.hardware.chipname"
+10-20 23:20:29.238  2434  3813 W libc    : Access denied finding property "persist.adb.tls_server.enable"
+10-20 23:20:29.239  2434  3813 W libc    : Access denied finding property "service.adb.tls.port"
+10-20 23:20:30.214  2434  4871 W libc    : Access denied finding property "persist.adb.tls_server.enable"
+10-20 23:20:30.214  2434  4871 W libc    : Access denied finding property "service.adb.tls.port"
+10-20 23:20:31.255  5103  5134 E GEL_DELAYED_EVENT_DEBUG: Failed delayed event dispatch, no dispatchers.
+10-20 23:20:31.919  5143  5167 W libc    : Access denied finding property "ro.vendor.aware_available"
+10-20 23:20:31.927  5143  5167 W libc    : Access denied finding property "ro.vendor.aware_available"
+10-20 23:20:31.998  5143  5167 W libc    : Access denied finding property "ro.vendor.aware_available"
+10-20 23:20:32.297  5333  5333 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-20 23:20:32.303  5333  5333 I AndroidRuntime: Using default boot image
+10-20 23:20:32.303  5333  5333 I AndroidRuntime: Leaving lock profiling enabled
+10-20 23:20:32.303  5333  5333 W libc    : Access denied finding property "odsign.verification.success"
+10-20 23:20:32.386  5143  5167 W libc    : Access denied finding property "ro.vendor.aware_available"
+10-20 23:20:32.462  5333  5333 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-20 23:20:32.650  5143  5167 W libc    : Access denied finding property "ro.vendor.aware_available"
+10-20 23:20:32.720  5379  5396 I AndroidRuntime: VM exiting with result code 0, cleanup skipped.
+10-20 23:20:32.759  5143  5167 W libc    : Access denied finding property "ro.vendor.aware_available"
+10-20 23:20:33.091   518  1731 E RecoverySnapshotStorage: 	at libcore.io.IoBridge.open(IoBridge.java:575)
+10-20 23:20:33.091   518  1731 E RecoverySnapshotStorage: 	at libcore.io.Linux.open(Native Method)
+10-20 23:20:33.091   518  1731 E RecoverySnapshotStorage: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:567)
+10-20 23:20:33.091   518  1731 E RecoverySnapshotStorage: 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:273)
+10-20 23:20:33.091   518  1731 E RecoverySnapshotStorage: 	at libcore.io.IoBridge.open(IoBridge.java:561)
+10-20 23:20:33.525  5333  5333 D AndroidRuntime: Shutting down VM
+10-20 23:20:33.702  5459  5473 I AndroidRuntime: VM exiting with result code 0, cleanup skipped.
+10-20 23:20:33.752  5143  5167 W libc    : Access denied finding property "ro.vendor.aware_available"
+10-20 23:20:35.642  5517  5517 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-20 23:20:35.644  5517  5517 I AndroidRuntime: Using default boot image
+10-20 23:20:35.644  5517  5517 I AndroidRuntime: Leaving lock profiling enabled
+10-20 23:20:35.644  5517  5517 W libc    : Access denied finding property "odsign.verification.success"
+10-20 23:20:35.753  5517  5517 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-20 23:20:36.859  5517  5517 D AndroidRuntime: Shutting down VM
+10-20 23:20:38.659  5143  5335 W libc    : Access denied finding property "ro.vendor.aware_available"
+10-20 23:20:38.668  5143  5335 W libc    : Access denied finding property "ro.vendor.aware_available"
+10-20 23:20:38.953  5143  5335 W libc    : Access denied finding property "ro.vendor.aware_available"
+10-20 23:20:39.660  5641  5664 I GAv4    :   adb shell setprop log.tag.GAv4 DEBUG
+10-20 23:20:40.090  2434  3052 W libc    : Access denied finding property "persist.adb.tls_server.enable"
+10-20 23:20:40.090  2434  3052 W libc    : Access denied finding property "service.adb.tls.port"
+10-20 23:20:40.331   518  1723 E RecoverySnapshotStorage: 	at libcore.io.IoBridge.open(IoBridge.java:575)
+10-20 23:20:40.331   518  1723 E RecoverySnapshotStorage: 	at libcore.io.Linux.open(Native Method)
+10-20 23:20:40.331   518  1723 E RecoverySnapshotStorage: 	at libcore.io.ForwardingOs.open(ForwardingOs.java:567)
+10-20 23:20:40.331   518  1723 E RecoverySnapshotStorage: 	at libcore.io.BlockGuardOs.open(BlockGuardOs.java:273)
+10-20 23:20:40.331   518  1723 E RecoverySnapshotStorage: 	at libcore.io.IoBridge.open(IoBridge.java:561)
+10-20 23:20:41.266  5731  5786 E GEL_DELAYED_EVENT_DEBUG: Failed delayed event dispatch, no dispatchers.
+10-20 23:20:42.117  5863  5863 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-20 23:20:42.121  5863  5863 I AndroidRuntime: Using default boot image
+10-20 23:20:42.121  5863  5863 I AndroidRuntime: Leaving lock profiling enabled
+10-20 23:20:42.121  5863  5863 W libc    : Access denied finding property "odsign.verification.success"
+10-20 23:20:42.357  5863  5863 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-20 23:20:43.410  5863  5863 D AndroidRuntime: Shutting down VM
+10-20 23:20:55.168  6370  6370 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-20 23:20:55.175  6370  6370 I AndroidRuntime: Using default boot image
+10-20 23:20:55.175  6370  6370 I AndroidRuntime: Leaving lock profiling enabled
+10-20 23:20:55.180  6370  6370 W libc    : Access denied finding property "odsign.verification.success"
+10-20 23:20:55.307  6370  6370 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-20 23:20:56.371  6370  6370 D AndroidRuntime: Shutting down VM
+10-20 23:21:03.045   518  1062 I ActivityTaskManager: moveTaskToBack: Task{4df79f7 #13 type=standard A=10145:com.myfuturecode.chatsetu U=0 visible=true mode=fullscreen translucent=false sz=1}
+10-20 23:21:08.549  6486  6486 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-20 23:21:08.551  6486  6486 I AndroidRuntime: Using default boot image
+10-20 23:21:08.551  6486  6486 I AndroidRuntime: Leaving lock profiling enabled
+10-20 23:21:08.551  6486  6486 W libc    : Access denied finding property "odsign.verification.success"
+10-20 23:21:08.613  6486  6486 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-20 23:21:09.649  6486  6486 D AndroidRuntime: Shutting down VM
+10-20 23:21:20.044  6543  6543 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-20 23:21:20.046  6543  6543 I AndroidRuntime: Using default boot image
+10-20 23:21:20.046  6543  6543 I AndroidRuntime: Leaving lock profiling enabled
+10-20 23:21:20.046  6543  6543 W libc    : Access denied finding property "odsign.verification.success"
+10-20 23:21:20.114  6543  6543 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-20 23:21:21.138  6543  6543 D AndroidRuntime: Shutting down VM
+10-20 23:21:26.485  6575  6575 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-20 23:21:26.487  6575  6575 I AndroidRuntime: Using default boot image
+10-20 23:21:26.487  6575  6575 I AndroidRuntime: Leaving lock profiling enabled
+10-20 23:21:26.487  6575  6575 W libc    : Access denied finding property "odsign.verification.success"
+10-20 23:21:26.549  6575  6575 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-20 23:21:27.571  6575  6575 D AndroidRuntime: Shutting down VM
+10-20 23:21:30.465  1774  2198 D StrictMode: 	at libcore.io.BlockGuardOs.access(BlockGuardOs.java:74)
+10-20 23:21:30.465  1774  2198 D StrictMode: 	at libcore.io.ForwardingOs.access(ForwardingOs.java:131)
+10-20 23:21:30.465  1774  2198 D StrictMode: 	at libcore.io.BlockGuardOs.access(BlockGuardOs.java:74)
+10-20 23:21:30.465  1774  2198 D StrictMode: 	at libcore.io.ForwardingOs.access(ForwardingOs.java:131)
+10-20 23:21:35.556  6693  6693 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-20 23:21:35.562  6693  6693 I AndroidRuntime: Using default boot image
+10-20 23:21:35.562  6693  6693 I AndroidRuntime: Leaving lock profiling enabled
+10-20 23:21:35.571  6693  6693 W libc    : Access denied finding property "odsign.verification.success"
+10-20 23:21:35.718  6693  6693 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-20 23:21:36.755  6693  6693 D AndroidRuntime: Shutting down VM
+10-20 23:21:47.249  6747  6760 W libc    : Access denied finding property "persist.adb.tls_server.enable"
+10-20 23:21:47.249  6747  6760 W libc    : Access denied finding property "service.adb.tls.port"
+10-20 23:21:49.221  6809  6809 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-20 23:21:49.226  6809  6809 I AndroidRuntime: Using default boot image
+10-20 23:21:49.226  6809  6809 I AndroidRuntime: Leaving lock profiling enabled
+10-20 23:21:49.230  6809  6809 W libc    : Access denied finding property "odsign.verification.success"
+10-20 23:21:49.301  6809  6809 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-20 23:21:50.315  6809  6809 D AndroidRuntime: Shutting down VM
+10-20 23:21:56.671  6854  6854 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-20 23:21:56.673  6854  6854 I AndroidRuntime: Using default boot image
+10-20 23:21:56.673  6854  6854 I AndroidRuntime: Leaving lock profiling enabled
+10-20 23:21:56.676  6854  6854 W libc    : Access denied finding property "odsign.verification.success"
+10-20 23:21:56.737  6854  6854 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-20 23:21:57.754  6854  6854 D AndroidRuntime: Shutting down VM
+10-20 23:21:59.667  6876  6876 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-20 23:21:59.669  6876  6876 I AndroidRuntime: Using default boot image
+10-20 23:21:59.669  6876  6876 I AndroidRuntime: Leaving lock profiling enabled
+10-20 23:21:59.669  6876  6876 W libc    : Access denied finding property "odsign.verification.success"
+10-20 23:21:59.729  6876  6876 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-20 23:22:00.744  6876  6876 D AndroidRuntime: Shutting down VM
+10-20 23:22:06.086  6906  6906 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-20 23:22:06.089  6906  6906 I AndroidRuntime: Using default boot image
+10-20 23:22:06.089  6906  6906 I AndroidRuntime: Leaving lock profiling enabled
+10-20 23:22:06.090  6906  6906 W libc    : Access denied finding property "odsign.verification.success"
+10-20 23:22:06.153  6906  6906 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-20 23:22:07.167  6906  6906 D AndroidRuntime: Shutting down VM
+10-20 23:22:09.053   518  1878 I ActivityTaskManager: START u0 {act=android.search.action.GLOBAL_SEARCH flg=0x10000000 cmp=com.google.android.googlequicksearchbox/.SearchActivity (has extras)} from uid 10133
+10-20 23:22:09.060   518  1878 W ActivityTaskManager: Can't find TaskDisplayArea to determine support for multi window. Task id=14 attached=false
+10-20 23:22:09.124   518  1890 I ActivityTaskManager: START u0 {act=android.search.action.GLOBAL_SEARCH flg=0x10000000 cmp=com.google.android.googlequicksearchbox/.SearchActivity (has extras)} from uid 10133
+10-20 23:22:09.203   518  1890 I ActivityTaskManager: START u0 {act=android.search.action.GLOBAL_SEARCH dat=agsa:/data?type=searchnow.TYPE_SEARCHNOW&inputProto=CAgQA4gBAZoBD2xhdW5jaGVyLXNlYXJjaKIB0AESzQEY/////wco1bgCKAUoybgCUAFYAIABAKAB
+10-20 23:22:09.203   518  1890 I ActivityTaskManager: AKgBAMABAMgBANABAIgCBZACAJoCVlRoaXMgc2VhcmNoIGlzIHJlbGF0ZWQgdG8gd2hhdCB5b3Xi
+10-20 23:22:09.203   518  1890 I ActivityTaskManager: gJlyZSB0eXBpbmcgYW5kIHlvdXIgcHJldmlvdXMgd2ViIGFuZCBhcHAgYWN0aXZpdHkuwAIB4AIA
+10-20 23:22:09.203   518  1890 I ActivityTaskManager: 8AIA+AIAgAMDqAP27Nn7//////8BwAMAyAMBgAQDiAT///////////8BkAQAmAQAoAQAqAQAsAQA
+10-20 23:22:09.203   518  1890 I ActivityTaskManager: uAQyyAQP4AQA6AH///////////8B8AEB+AEAgAIBsAIBuAKQHMgCAdoCAOICAKgDAMADAugDAYAE
+10-20 23:22:09.203   518  1890 I ActivityTaskManager: AIgEAJAEAcAEAdIEDExpc3RlbmluZy4uLuoEDExpc3RlbmluZy4uLpgFAagFAbgFBsIFB0RFRkFV
+10-20 23:22:09.203   518  1890 I ActivityTaskManager: TFTQBegH8AUB+gUJIndlYXRoZXIi+gUJICJob3RlbHMigAYBoAboB6gGuBewBtAP
+10-20 23:22:09.203   518  1890 I ActivityTaskManager:  flg=0x10008000 cmp=com.google.android.googlequicksearchbox/com.google.android.apps.gsa.searchnow.SearchNowActivity (has extras)} from uid 10101
+10-20 23:22:09.204   518  1890 W ActivityTaskManager: Can't find TaskDisplayArea to determine support for multi window. Task id=15 attached=false
+10-20 23:22:09.244   518  1730 I ActivityTaskManager: START u0 {act=android.search.action.GLOBAL_SEARCH flg=0x10000000 cmp=com.google.android.googlequicksearchbox/.SearchActivity (has extras)} from uid 10133
+10-20 23:22:09.261   518  1878 I ActivityTaskManager: START u0 {act=android.search.action.GLOBAL_SEARCH flg=0x10000000 cmp=com.google.android.googlequicksearchbox/.SearchActivity (has extras)} from uid 10133
+10-20 23:22:09.261   518  1878 W ActivityTaskManager: Can't find TaskDisplayArea to determine support for multi window. Task id=16 attached=false
+10-20 23:22:09.268   518  1878 I ActivityTaskManager: Add Task{a9ec231 #14 type=standard I=com.google.android.googlequicksearchbox/.SearchActivity U=0 visible=false mode=fullscreen translucent=true sz=1} to hidden list because adding Task{7a9cd16 #16 type=standard I=com.google.android.googlequicksearchbox/.SearchActivity U=0 visible=true mode=fullscreen translucent=true sz=1}
+10-20 23:22:09.273   518  1878 I ActivityTaskManager: START u0 {act=android.search.action.GLOBAL_SEARCH flg=0x10000000 cmp=com.google.android.googlequicksearchbox/.SearchActivity (has extras)} from uid 10133
+10-20 23:22:09.286   518  2682 W ActivityTaskManager: Tried to set launchTime (0) < mLastActivityLaunchTime (192650)
+10-20 23:22:09.287   518  2682 W ActivityTaskManager: Tried to set launchTime (0) < mLastActivityLaunchTime (192650)
+10-20 23:22:09.570   518  1063 I ActivityTaskManager: START u0 {act=android.search.action.GLOBAL_SEARCH dat=agsa:/data?type=searchnow.TYPE_SEARCHNOW&inputProto=CAgQA4gBAZoBD2xhdW5jaGVyLXNlYXJjaKIB0AESzQEY/////wco1bgCKAUoybgCUAFYAIABAKAB
+10-20 23:22:09.570   518  1063 I ActivityTaskManager: AKgBAMABAMgBANABAIgCBZACAJoCVlRoaXMgc2VhcmNoIGlzIHJlbGF0ZWQgdG8gd2hhdCB5b3Xi
+10-20 23:22:09.570   518  1063 I ActivityTaskManager: gJlyZSB0eXBpbmcgYW5kIHlvdXIgcHJldmlvdXMgd2ViIGFuZCBhcHAgYWN0aXZpdHkuwAIB4AIA
+10-20 23:22:09.570   518  1063 I ActivityTaskManager: 8AIA+AIAgAMDqAP27Nn7//////8BwAMAyAMBgAQDiAT///////////8BkAQAmAQAoAQAqAQAsAQA
+10-20 23:22:09.570   518  1063 I ActivityTaskManager: uAQyyAQP4AQA6AH///////////8B8AEB+AEAgAIBsAIBuAKQHMgCAdoCAOICAKgDAMADAugDAYAE
+10-20 23:22:09.570   518  1063 I ActivityTaskManager: AIgEAJAEAcAEAdIEDExpc3RlbmluZy4uLuoEDExpc3RlbmluZy4uLpgFAagFAbgFBsIFB0RFRkFV
+10-20 23:22:09.570   518  1063 I ActivityTaskManager: TFTQBegH8AUB+gUJIndlYXRoZXIi+gUJICJob3RlbHMigAYBoAboB6gGuBewBtAP
+10-20 23:22:09.570   518  1063 I ActivityTaskManager:  flg=0x10008000 cmp=com.google.android.googlequicksearchbox/com.google.android.apps.gsa.searchnow.SearchNowActivity (has extras)} from uid 10101
+10-20 23:22:10.070   518   554 W ActivityTaskManager: Activity top resumed state loss timeout for ActivityRecord{cc63ed8 u0 com.google.android.googlequicksearchbox/.SearchActivity t16 f}}
+10-20 23:22:10.072   518   554 W ActivityTaskManager: Activity pause timeout for ActivityRecord{cc63ed8 u0 com.google.android.googlequicksearchbox/.SearchActivity t16 f}}
+10-20 23:22:10.072   518   554 W ActivityTaskManager: Tried to set launchTime (0) < mLastActivityLaunchTime (192827)
+10-20 23:22:10.525   518   551 I ActivityTaskManager: Displayed com.google.android.googlequicksearchbox/com.google.android.apps.gsa.searchnow.SearchNowActivity: +1s263ms
+10-20 23:22:11.621   518  1731 I ActivityTaskManager: START u0 {cmp=com.google.android.googlequicksearchbox/com.google.android.apps.gsa.sidekick.main.optin.OptInActivity (has extras)} from uid 10101
+10-20 23:22:12.033   518  1964 W ActivityTaskManager: Tried to set launchTime (0) < mLastActivityLaunchTime (193612)
+10-20 23:22:13.005   518   551 I ActivityTaskManager: Displayed com.google.android.googlequicksearchbox/com.google.android.apps.gsa.sidekick.main.optin.OptInActivity: +1s380ms
+10-20 23:22:15.199  7023  7023 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-20 23:22:15.201  7023  7023 I AndroidRuntime: Using default boot image
+10-20 23:22:15.201  7023  7023 I AndroidRuntime: Leaving lock profiling enabled
+10-20 23:22:15.207  7023  7023 W libc    : Access denied finding property "odsign.verification.success"
+10-20 23:22:15.269  7023  7023 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-20 23:22:16.283  7023  7023 D AndroidRuntime: Shutting down VM
+10-20 23:22:22.213  7066  7066 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-20 23:22:22.215  7066  7066 I AndroidRuntime: Using default boot image
+10-20 23:22:22.215  7066  7066 I AndroidRuntime: Leaving lock profiling enabled
+10-20 23:22:22.215  7066  7066 W libc    : Access denied finding property "odsign.verification.success"
+10-20 23:22:22.280  7066  7066 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-20 23:22:23.295  7066  7066 D AndroidRuntime: Shutting down VM
+10-20 23:22:37.535  7103  7103 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-20 23:22:37.537  7103  7103 I AndroidRuntime: Using default boot image
+10-20 23:22:37.537  7103  7103 I AndroidRuntime: Leaving lock profiling enabled
+10-20 23:22:37.537  7103  7103 W libc    : Access denied finding property "odsign.verification.success"
+10-20 23:22:37.602  7103  7103 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-20 23:22:38.616  7103  7103 D AndroidRuntime: Shutting down VM
+10-20 23:22:48.851  7133  7133 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-20 23:22:48.853  7133  7133 I AndroidRuntime: Using default boot image
+10-20 23:22:48.853  7133  7133 I AndroidRuntime: Leaving lock profiling enabled
+10-20 23:22:48.854  7133  7133 W libc    : Access denied finding property "odsign.verification.success"
+10-20 23:22:48.914  7133  7133 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-20 23:22:49.928  7133  7133 D AndroidRuntime: Shutting down VM
+10-20 23:22:55.754   518   555 W ActivityTaskManager: Can't find TaskDisplayArea to determine support for multi window. Task id=15 attached=false
+10-20 23:22:55.754   518   555 W ActivityTaskManager: Can't find TaskDisplayArea to determine support for multi window. Task id=15 attached=false
+10-20 23:22:56.174  6747  6870 W libc    : Access denied finding property "persist.adb.tls_server.enable"
+10-20 23:22:56.174  6747  6870 W libc    : Access denied finding property "service.adb.tls.port"
+10-20 23:22:59.205  7174  7174 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-20 23:22:59.207  7174  7174 I AndroidRuntime: Using default boot image
+10-20 23:22:59.207  7174  7174 I AndroidRuntime: Leaving lock profiling enabled
+10-20 23:22:59.208  7174  7174 W libc    : Access denied finding property "odsign.verification.success"
+10-20 23:22:59.268  7174  7174 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-20 23:23:00.287  7174  7174 D AndroidRuntime: Shutting down VM
+10-20 23:23:06.633  7204  7204 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-20 23:23:06.636  7204  7204 I AndroidRuntime: Using default boot image
+10-20 23:23:06.636  7204  7204 I AndroidRuntime: Leaving lock profiling enabled
+10-20 23:23:06.636  7204  7204 W libc    : Access denied finding property "odsign.verification.success"
+10-20 23:23:06.699  7204  7204 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-20 23:23:07.715  7204  7204 D AndroidRuntime: Shutting down VM
+10-20 23:23:08.606   518  1727 I ActivityTaskManager: START u0 {act=android.intent.action.MAIN cat=[android.intent.category.LAUNCHER] flg=0x10200000 cmp=com.google.android.apps.messaging/.ui.ConversationListActivity bnds=[239,1751][440,1919]} from uid 10133
+10-20 23:23:08.609   518  1727 W ActivityTaskManager: Can't find TaskDisplayArea to determine support for multi window. Task id=17 attached=false
+10-20 23:23:09.196   518   604 I ActivityTaskManager: START u0 {cmp=com.google.android.apps.messaging/.welcome.WelcomeActivity} from uid 10100
+10-20 23:23:09.290   518  2682 W ActivityTaskManager: Tried to set launchTime (0) < mLastActivityLaunchTime (252266)
+10-20 23:23:09.934   518   551 I ActivityTaskManager: Displayed com.google.android.apps.messaging/.welcome.WelcomeActivity: +1s306ms
+10-20 23:23:09.934   518   551 I ActivityTaskManager: Fully drawn com.google.android.apps.messaging/.welcome.WelcomeActivity: +1s306ms
+10-20 23:23:15.007  7268  7268 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-20 23:23:15.009  7268  7268 I AndroidRuntime: Using default boot image
+10-20 23:23:15.009  7268  7268 I AndroidRuntime: Leaving lock profiling enabled
+10-20 23:23:15.009  7268  7268 W libc    : Access denied finding property "odsign.verification.success"
+10-20 23:23:15.072  7268  7268 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-20 23:23:16.091  7268  7268 D AndroidRuntime: Shutting down VM
+10-20 23:23:22.300  7309  7309 D AndroidRuntime: >>>>>> START com.android.internal.os.RuntimeInit uid 2000 <<<<<<
+10-20 23:23:22.302  7309  7309 I AndroidRuntime: Using default boot image
+10-20 23:23:22.302  7309  7309 I AndroidRuntime: Leaving lock profiling enabled
+10-20 23:23:22.302  7309  7309 W libc    : Access denied finding property "odsign.verification.success"
+10-20 23:23:22.365  7309  7309 D AndroidRuntime: Calling main entry com.android.commands.uiautomator.Launcher
+10-20 23:23:23.381  7309  7309 D AndroidRuntime: Shutting down VM
+10-20 23:23:30.979   518   555 W ActivityTaskManager: Can't find TaskDisplayArea to determine support for multi window. Task id=17 attached=false
+10-20 23:23:30.979   518   555 W ActivityTaskManager: Can't find TaskDisplayArea to determine support for multi window. Task id=17 attached=false
