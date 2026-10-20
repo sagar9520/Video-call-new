@@ -3,7 +3,7 @@ wait 4
 shot splash
 wait 12
 shot onboarding
-tap Enter your name
+tapxy 540 920
 type Rahul
 key 111
 tap Select date
