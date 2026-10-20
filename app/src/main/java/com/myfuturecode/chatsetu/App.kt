@@ -4,10 +4,19 @@ import android.app.Activity
 import android.app.Application
 import android.os.Bundle
 import androidx.lifecycle.DefaultLifecycleObserver
+import coil.ImageLoader
+import coil.ImageLoaderFactory
+import coil.decode.SvgDecoder
 import androidx.lifecycle.LifecycleOwner
 import androidx.lifecycle.ProcessLifecycleOwner
 
-class App : Application(), Application.ActivityLifecycleCallbacks, DefaultLifecycleObserver {
+class App : Application(), Application.ActivityLifecycleCallbacks, DefaultLifecycleObserver, ImageLoaderFactory {
+    // SVG (demo avatars) + crossfade
+    override fun newImageLoader(): ImageLoader = ImageLoader.Builder(this)
+        .components { add(SvgDecoder.Factory()) }
+        .crossfade(true)
+        .build()
+
     private var current: Activity? = null
     private var backgroundAt = 0L
 

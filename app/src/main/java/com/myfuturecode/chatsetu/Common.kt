@@ -105,3 +105,18 @@ fun openStore(act: MainActivity, pkg: String) {
 fun openUrl(act: MainActivity, url: String) {
     runCatching { act.startActivity(android.content.Intent(android.content.Intent.ACTION_VIEW, android.net.Uri.parse(url))) }
 }
+
+private var darkScreens = 0
+
+/** Dark background wali screen pe status bar ke icons safed; screen hatte hi wapas dark icons. */
+@Composable
+fun DarkStatusBar() {
+    val view = androidx.compose.ui.platform.LocalView.current
+    androidx.compose.runtime.DisposableEffect(Unit) {
+        val win = (view.context as? android.app.Activity)?.window
+        val ctl = win?.let { androidx.core.view.WindowCompat.getInsetsController(it, view) }
+        darkScreens++
+        ctl?.isAppearanceLightStatusBars = false
+        onDispose { darkScreens--; ctl?.isAppearanceLightStatusBars = darkScreens == 0 }
+    }
+}

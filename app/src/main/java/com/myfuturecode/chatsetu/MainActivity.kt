@@ -27,6 +27,7 @@ sealed class Route {
     data class Call(val hostId: String, val fromMatch: Boolean = false) : Route()
     data object Purchases : Route()
     data object Blocked : Route()
+    data object EditProfile : Route()
 }
 
 class MainActivity : ComponentActivity() {
@@ -38,10 +39,14 @@ class MainActivity : ComponentActivity() {
     var lowGems by mutableStateOf(false)
     var checkin by mutableStateOf(false)
     var mainTab by mutableStateOf(0)
+    var connectingHost by mutableStateOf<Host?>(null)   // "Connecting" pill (original jaisa)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
+        enableEdgeToEdge(
+            statusBarStyle = androidx.activity.SystemBarStyle.light(android.graphics.Color.TRANSPARENT, android.graphics.Color.TRANSPARENT),
+            navigationBarStyle = androidx.activity.SystemBarStyle.light(android.graphics.Color.WHITE, android.graphics.Color.WHITE),
+        )
         Billing.onMessage = { msg -> runOnUiThread { Toast.makeText(this, msg, Toast.LENGTH_SHORT).show() } }
         setContent {
             ChatSetuTheme {
@@ -56,6 +61,7 @@ class MainActivity : ComponentActivity() {
                         is Route.Call -> CallScreen(this@MainActivity, r.hostId, r.fromMatch)
                         Route.Purchases -> PurchasesScreen(this@MainActivity)
                         Route.Blocked -> BlockedScreen(this@MainActivity)
+                        Route.EditProfile -> EditProfileScreen(this@MainActivity)
                     }
                 }
                 LaunchedEffect(route) {
@@ -81,6 +87,17 @@ class MainActivity : ComponentActivity() {
     fun back() {
         if (stack.size > 1) stack.removeAt(stack.lastIndex)
         else if (route is Route.Main && mainTab != 0) mainTab = 0
+    }
+
+    /** Video call: gems kaafi hain to call screen, warna thoda "Connecting" dikha ke recharge sheet. */
+    fun startCall(hostId: String, fromMatch: Boolean = false) {
+        val h = host(hostId) ?: return
+        if (Store.gems.intValue >= h.rate) { push(Route.Call(h.id, fromMatch)); return }
+        connectingHost = h
+        lifecycleScope.launch {
+            kotlinx.coroutines.delay(1500)
+            if (connectingHost == h) { connectingHost = null; recharge = "Recharge to start a video call with ${h.name}" }
+        }
     }
 
     fun host(id: String): Host? = RemoteConfig.current.hosts.firstOrNull { it.id == id }

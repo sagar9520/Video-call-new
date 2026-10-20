@@ -32,6 +32,9 @@ object Store {
     val scriptPos = mutableStateMapOf<String, Int>()
     val purchases = mutableStateListOf<Purchase>()
     val matches = mutableIntStateOf(0)
+    val following = mutableStateListOf<String>()
+    val bio = mutableStateOf("")
+    val avatar = mutableStateOf("")               // gallery se chuni photo ka content:// URI
 
     val onboarded get() = name.value.isNotBlank()
 
@@ -47,6 +50,9 @@ object Store {
         lastCheckin.value = sp.getString("last_checkin", "")!!
         matches.intValue = sp.getInt("matches", 0)
         blocked.addAll(sp.getString("blocked", "")!!.split(',').filter { it.isNotBlank() })
+        following.addAll(sp.getString("following", "")!!.split(',').filter { it.isNotBlank() })
+        bio.value = sp.getString("bio", "")!!
+        avatar.value = sp.getString("avatar", "")!!
         runCatching {
             val o = JSONObject(sp.getString("chats", "{}")!!)
             o.keys().forEach { k ->
@@ -130,6 +136,21 @@ object Store {
             .putString("script", JSONObject(scriptPos.toMap() as Map<*, *>).toString()).apply()
     }
 
+    // ----- follow -----
+    fun toggleFollow(hostId: String): Boolean {
+        val now = hostId !in following
+        if (now) following.add(0, hostId) else following.remove(hostId)
+        sp.edit().putString("following", following.joinToString(",")).apply()
+        return now
+    }
+
+    fun editProfile(n: String, b: String, g: String, tags: List<String>, photo: String) {
+        name.value = n; bio.value = b; gender.value = g; avatar.value = photo
+        interests.clear(); interests.addAll(tags)
+        sp.edit().putString("name", n).putString("bio", b).putString("gender", g).putString("avatar", photo)
+            .putString("interests", tags.joinToString(",")).apply()
+    }
+
     // ----- block / report -----
     fun block(hostId: String) {
         if (hostId !in blocked) blocked.add(hostId)
@@ -152,6 +173,6 @@ object Store {
         sp.edit().clear().apply()
         ctx.getSharedPreferences("remote_config", 0).edit().clear().apply()
         name.value = ""; dob.value = ""; gender.value = ""; interests.clear(); gems.intValue = 0
-        checkinDay.intValue = 0; lastCheckin.value = ""; blocked.clear(); chats.clear(); unread.clear(); scriptPos.clear(); purchases.clear(); matches.intValue = 0
+        checkinDay.intValue = 0; lastCheckin.value = ""; blocked.clear(); following.clear(); bio.value = ""; avatar.value = ""; chats.clear(); unread.clear(); scriptPos.clear(); purchases.clear(); matches.intValue = 0
     }
 }

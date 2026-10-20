@@ -53,6 +53,12 @@ import androidx.compose.material.icons.filled.PlayArrow
 import androidx.compose.material.icons.filled.Videocam
 import androidx.compose.material.icons.filled.VideocamOff
 import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.ModalBottomSheet
+import androidx.compose.material3.rememberModalBottomSheetState
+import androidx.compose.ui.graphics.SolidColor
+import androidx.compose.ui.draw.shadow
+import androidx.compose.material.icons.filled.Close
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -66,6 +72,7 @@ import androidx.compose.runtime.DisposableEffect
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.rememberCoroutineScope
@@ -105,6 +112,7 @@ fun ProfileScreen(act: MainActivity, hostId: String) {
     var report by remember { mutableStateOf(false) }
     val pages = (h.photos.size + if (h.video.isNotBlank()) 1 else 0).coerceAtLeast(1)
     val pager = rememberPagerState { pages }
+    DarkStatusBar()
     Column(Modifier.fillMaxSize().background(Color.White)) {
         Box(Modifier.fillMaxWidth().height(380.dp)) {
             HorizontalPager(pager, Modifier.fillMaxSize()) { p ->
@@ -122,12 +130,22 @@ fun ProfileScreen(act: MainActivity, hostId: String) {
             }
         }
         Column(Modifier.weight(1f).padding(16.dp)) {
+            val following = h.id in Store.following
             Row(verticalAlignment = Alignment.CenterVertically) {
-                Text("${h.name}, ${h.age}", fontSize = 21.sp, fontWeight = FontWeight.ExtraBold)
-                Spacer(Modifier.width(8.dp))
-                if (h.online) Text("● Online", color = Green, fontSize = 12.sp, fontWeight = FontWeight.Bold)
+                Column(Modifier.weight(1f)) {
+                    Row(verticalAlignment = Alignment.CenterVertically) {
+                        Text("${h.name}, ${h.age}", fontSize = 22.sp, fontWeight = FontWeight.ExtraBold, color = Ink)
+                        Spacer(Modifier.width(8.dp))
+                        if (h.online) Text("● Online", color = Green, fontSize = 12.sp, fontWeight = FontWeight.Bold)
+                    }
+                    Text("🇮🇳 ${h.city} · ${h.lang} · ID ${h.id}", color = Color.Gray, fontSize = 12.sp, modifier = Modifier.padding(top = 3.dp))
+                    Text("${h.followers + if (following) 1 else 0} followers", color = Color.Gray, fontSize = 12.sp, modifier = Modifier.padding(top = 2.dp))
+                }
+                Box(
+                    Modifier.clip(RoundedCornerShape(20.dp)).background(if (following) SolidColor(Lilac) else ButtonGradient)
+                        .clickable { if (Store.toggleFollow(h.id)) act.toast("You are following ${h.name}") }.padding(horizontal = 16.dp, vertical = 8.dp),
+                ) { Text(if (following) "Following" else "+ Follow", color = if (following) LilacText else Color.White, fontWeight = FontWeight.Bold, fontSize = 13.sp) }
             }
-            Text("🇮🇳 ${h.city} · ${h.lang} · ID ${h.id}", color = Color.Gray, fontSize = 12.sp, modifier = Modifier.padding(top = 3.dp))
             if (h.bio.isNotBlank()) Text(h.bio, fontSize = 14.sp, color = Color(0xFF444444), modifier = Modifier.padding(top = 10.dp))
             FlowRow(Modifier.padding(top = 10.dp), horizontalArrangement = Arrangement.spacedBy(6.dp), verticalArrangement = Arrangement.spacedBy(6.dp)) {
                 h.tags.forEach { Text(it, fontSize = 11.sp, color = LilacText, modifier = Modifier.clip(RoundedCornerShape(10.dp)).background(Lilac).padding(horizontal = 9.dp, vertical = 4.dp)) }
@@ -142,7 +160,7 @@ fun ProfileScreen(act: MainActivity, hostId: String) {
                 Modifier.weight(1f).height(50.dp).clip(RoundedCornerShape(25.dp)).background(Lilac).clickable { act.push(Route.Chat(h.id)) },
                 contentAlignment = Alignment.Center,
             ) { Text("💬 Chat", color = LilacText, fontWeight = FontWeight.Bold) }
-            GradientButton("📹 Video call · ${h.rate}💎/min", Modifier.weight(1.5f), brush = CallGradient, height = 50) { act.push(Route.Call(h.id)) }
+            GradientButton("📹 Video call · ${h.rate}💎/min", Modifier.weight(1.5f), brush = CallGradient, height = 50) { act.startCall(h.id) }
         }
     }
     if (report) ReportDialog(act, h) { report = false }
@@ -226,7 +244,7 @@ fun ChatScreen(act: MainActivity, hostId: String) {
                 Row(verticalAlignment = Alignment.CenterVertically) { Text(h.name, fontWeight = FontWeight.Bold); Spacer(Modifier.width(6.dp)); VirtualTag(h, dark = false) }
                 Text(if (typing) "typing…" else if (h.online) "● Online" else "Offline", fontSize = 11.sp, color = if (h.online || typing) Green else Color.Gray)
             }
-            IconButton({ act.push(Route.Call(h.id)) }) { Icon(Icons.Default.Videocam, "Video call", tint = Purple) }
+            IconButton({ act.startCall(h.id) }) { Icon(Icons.Default.Videocam, "Video call", tint = Purple) }
         }
         LazyColumn(Modifier.weight(1f), state = list, contentPadding = PaddingValues(vertical = 10.dp)) {
             items(msgs) { m -> Bubble(m) { viewer = m } }
@@ -345,6 +363,10 @@ fun CallScreen(act: MainActivity, hostId: String, fromMatch: Boolean) {
     var gifts by remember { mutableStateOf(false) }
     var report by remember { mutableStateOf(false) }
     var lastGift by remember { mutableStateOf<String?>(null) }
+    var bigGift by remember { mutableStateOf<String?>(null) }
+    val callMsgs = remember { mutableStateListOf<Pair<Boolean, String>>() }   // (mine, text)
+    var chatOpen by remember { mutableStateOf(false) }
+    var chatText by remember { mutableStateOf("") }
     var camAllowed by remember { mutableStateOf(ContextCompat.checkSelfPermission(ctx, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) }
     val askCam = rememberLauncherForActivityResult(ActivityResultContracts.RequestPermission()) { camAllowed = it }
 
@@ -369,7 +391,15 @@ fun CallScreen(act: MainActivity, hostId: String, fromMatch: Boolean) {
         }
     }
     LaunchedEffect(lastGift) { if (lastGift != null) { delay(2500); lastGift = null } }
+    LaunchedEffect(bigGift) { if (bigGift != null) { delay(1800); bigGift = null } }
+    // Call ke dauraan host ke text messages (server script se) screen pe aate hain
+    LaunchedEffect(connecting) {
+        if (connecting) return@LaunchedEffect
+        val lines = (h.script ?: RemoteConfig.current.chatScript).filter { it.type == "text" }.map { it.text }
+        lines.forEach { t -> delay(6000L + (0..4000).random()); callMsgs.add(false to t) }
+    }
 
+    DarkStatusBar()
     Box(Modifier.fillMaxSize().background(Color.Black)) {
         if (h.video.isNotBlank()) LoopVideo(h.video, Modifier.fillMaxSize(), muted = false)
         else HostImage(h, Modifier.fillMaxSize(), letterSize = 120.sp)
@@ -408,6 +438,38 @@ fun CallScreen(act: MainActivity, hostId: String, fromMatch: Boolean) {
             else Text(if (!camAllowed) "Camera\npermission\nneeded" else "Camera off", color = Color.White, fontSize = 10.sp, textAlign = TextAlign.Center)
         }
 
+        // Call chat (neeche-baayen)
+        Column(
+            Modifier.align(Alignment.BottomStart).navigationBarsPadding().padding(start = 12.dp, end = 90.dp, bottom = if (chatOpen) 150.dp else 100.dp),
+            verticalArrangement = Arrangement.spacedBy(6.dp),
+        ) {
+            callMsgs.takeLast(4).forEach { (mine, t) ->
+                Text(
+                    (if (mine) "You: " else "${h.name}: ") + t, color = Color.White, fontSize = 13.sp,
+                    modifier = Modifier.clip(RoundedCornerShape(14.dp)).background(Color.Black.copy(alpha = .45f)).padding(horizontal = 12.dp, vertical = 6.dp),
+                )
+            }
+        }
+        bigGift?.let { Text(it, fontSize = 110.sp, modifier = Modifier.align(Alignment.Center)) }
+        if (chatOpen) Row(
+            Modifier.align(Alignment.BottomCenter).navigationBarsPadding().padding(start = 12.dp, end = 12.dp, bottom = 92.dp).fillMaxWidth()
+                .clip(RoundedCornerShape(24.dp)).background(Color.White).padding(start = 16.dp, end = 4.dp),
+            verticalAlignment = Alignment.CenterVertically,
+        ) {
+            Box(Modifier.weight(1f)) {
+                if (chatText.isEmpty()) Text("Say something… (${RemoteConfig.current.msgCost}💎)", color = Color.Gray, fontSize = 14.sp)
+                androidx.compose.foundation.text.BasicTextField(chatText, { chatText = it }, singleLine = true, modifier = Modifier.fillMaxWidth(),
+                    textStyle = androidx.compose.ui.text.TextStyle(fontSize = 14.sp, color = Ink))
+            }
+            IconButton({
+                val t = chatText.trim()
+                if (t.isNotEmpty()) {
+                    if (!Store.spend(RemoteConfig.current.msgCost)) act.needGems()
+                    else { callMsgs.add(true to t); chatText = "" }
+                }
+            }) { Icon(Icons.AutoMirrored.Filled.Send, "Send", tint = Purple) }
+        }
+
         lastGift?.let {
             Text(it, color = Color.White, fontSize = 13.sp, modifier = Modifier.align(Alignment.BottomStart).navigationBarsPadding().padding(start = 12.dp, bottom = 100.dp)
                 .clip(RoundedCornerShape(14.dp)).background(Color.Black.copy(alpha = .5f)).padding(horizontal = 12.dp, vertical = 6.dp))
@@ -422,9 +484,10 @@ fun CallScreen(act: MainActivity, hostId: String, fromMatch: Boolean) {
             CallBtn(Icons.Default.CallEnd, "End", size = 62, bg = Brush.linearGradient(listOf(Red, Red))) { end() }
             CallBtn(Icons.Default.Cameraswitch, "Flip") { front = !front }
             CallBtn(Icons.Default.CardGiftcard, "Gift") { gifts = true }
+            CallBtn(Icons.AutoMirrored.Filled.Chat, "Chat") { chatOpen = !chatOpen }
         }
     }
-    if (gifts) GiftSheet(act, h, onClose = { gifts = false }) { g -> lastGift = "🎁 You sent ${g.emoji} ${g.name}" }
+    if (gifts) GiftSheet(act, h, onClose = { gifts = false }) { g -> lastGift = "🎁 You sent ${g.emoji} ${g.name}"; bigGift = g.emoji }
     if (report) ReportDialog(act, h) { report = false }
 }
 
@@ -457,45 +520,59 @@ private fun CameraPreview(front: Boolean, modifier: Modifier) {
 
 // ---------------- Gifts ----------------
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun GiftSheet(act: MainActivity, h: Host, onClose: () -> Unit, onSent: (Gift) -> Unit) {
     val gifts = RemoteConfig.current.gifts
     val cats = gifts.map { it.category }.distinct()
     var cat by remember { mutableStateOf(cats.firstOrNull() ?: "") }
     var sel by remember { mutableStateOf<Gift?>(null) }
-    Dialog(onClose, DialogProperties(usePlatformDefaultWidth = false)) {
-        Box(Modifier.fillMaxSize().clickable(onClick = onClose), contentAlignment = Alignment.BottomCenter) {
-            Column(Modifier.fillMaxWidth().clip(RoundedCornerShape(topStart = 22.dp, topEnd = 22.dp)).background(Color(0xFF1A1030)).clickable(enabled = false) {}.navigationBarsPadding().padding(12.dp)) {
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    cats.forEach { c ->
-                        Text(c, color = if (c == cat) Color.White else Color.Gray, fontWeight = FontWeight.Bold, fontSize = 13.sp,
-                            modifier = Modifier.clickable { cat = c }.padding(horizontal = 8.dp, vertical = 6.dp))
+    var qty by remember { mutableIntStateOf(1) }
+    // ModalBottomSheet khud nav bar ke upar rehta hai (button ab neeche nahi chhupega)
+    ModalBottomSheet(onClose, sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true), containerColor = Color(0xFF1A1030), dragHandle = null) {
+        Column(Modifier.fillMaxWidth().padding(14.dp)) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                cats.forEach { c ->
+                    Column(Modifier.clickable { cat = c }.padding(horizontal = 8.dp, vertical = 6.dp), horizontalAlignment = Alignment.CenterHorizontally) {
+                        Text(c, color = if (c == cat) Color.White else Color.Gray, fontWeight = FontWeight.Bold, fontSize = 14.sp)
+                        Box(Modifier.padding(top = 3.dp).size(width = 14.dp, height = 2.dp).background(if (c == cat) Pink else Color.Transparent))
                     }
-                    Spacer(Modifier.weight(1f))
-                    Text("💎 ${Store.gems.intValue}", color = Gold, fontWeight = FontWeight.Bold, modifier = Modifier.clickable { act.recharge = "" })
                 }
-                Column(Modifier.padding(vertical = 8.dp)) {
-                    gifts.filter { it.category == cat }.chunked(4).forEach { row ->
-                        Row(Modifier.fillMaxWidth()) {
-                            row.forEach { g ->
-                                Column(
-                                    Modifier.weight(1f).clip(RoundedCornerShape(12.dp)).background(if (sel == g) Purple.copy(alpha = .35f) else Color.Transparent)
-                                        .clickable { sel = g }.padding(vertical = 8.dp),
-                                    horizontalAlignment = Alignment.CenterHorizontally,
-                                ) {
-                                    if (g.icon.isNotBlank()) AsyncImage(g.icon, g.name, Modifier.size(40.dp)) else Text(g.emoji, fontSize = 32.sp)
-                                    Text(g.name, color = Color(0xFFDDDDDD), fontSize = 11.sp)
-                                    Text("💎${g.price}", color = Gold, fontSize = 10.sp)
-                                }
+                Spacer(Modifier.weight(1f))
+                Text("💎 ${Store.gems.intValue}  ›", color = Gold, fontWeight = FontWeight.Bold, modifier = Modifier.clickable { onClose(); act.recharge = "" })
+            }
+            Column(Modifier.padding(vertical = 8.dp)) {
+                gifts.filter { it.category == cat }.chunked(4).forEach { row ->
+                    Row(Modifier.fillMaxWidth()) {
+                        row.forEach { g ->
+                            Column(
+                                Modifier.weight(1f).padding(3.dp).clip(RoundedCornerShape(12.dp))
+                                    .border(1.5.dp, if (sel == g) Pink else Color.Transparent, RoundedCornerShape(12.dp))
+                                    .background(if (sel == g) Pink.copy(alpha = .15f) else Color.Transparent)
+                                    .clickable { sel = g }.padding(vertical = 8.dp),
+                                horizontalAlignment = Alignment.CenterHorizontally,
+                            ) {
+                                if (g.icon.isNotBlank()) AsyncImage(g.icon, g.name, Modifier.size(42.dp)) else Text(g.emoji, fontSize = 34.sp)
+                                Text(g.name, color = Color(0xFFDDDDDD), fontSize = 11.sp)
+                                Text("💎${g.price}", color = Gold, fontSize = 10.sp)
                             }
-                            repeat(4 - row.size) { Spacer(Modifier.weight(1f)) }
                         }
+                        repeat(4 - row.size) { Spacer(Modifier.weight(1f)) }
                     }
                 }
-                GradientButton(sel?.let { "Send ${it.emoji} · ${it.price}💎" } ?: "Choose a gift", brush = CallGradient) {
+            }
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Text(
+                    "x$qty ▾", color = Color.White, fontWeight = FontWeight.Bold, fontSize = 13.sp,
+                    modifier = Modifier.clip(RoundedCornerShape(20.dp)).background(Color.White.copy(alpha = .12f))
+                        .clickable { qty = when (qty) { 1 -> 5; 5 -> 10; 10 -> 99; else -> 1 } }.padding(horizontal = 16.dp, vertical = 12.dp),
+                )
+                Spacer(Modifier.width(10.dp))
+                GradientButton(sel?.let { "Send · ${it.price * qty}💎" } ?: "Choose a gift", Modifier.weight(1f), brush = CallGradient, height = 46) {
                     val g = sel ?: return@GradientButton
-                    if (!Store.spend(g.price)) { onClose(); act.needGems(); return@GradientButton }
-                    onSent(g); onClose()
+                    if (!Store.spend(g.price * qty)) { onClose(); act.needGems(); return@GradientButton }
+                    onSent(g)
+                    onClose()
                 }
             }
         }
@@ -554,58 +631,69 @@ fun Overlays(act: MainActivity) {
     act.recharge?.let { msg -> RechargeSheet(act, msg) { act.recharge = null } }
     if (act.lowGems) LowGemsDialog(act)
     if (act.checkin) CheckinDialog(act)
+    act.connectingHost?.let { h ->
+        Box(Modifier.fillMaxSize().navigationBarsPadding().padding(bottom = 90.dp), contentAlignment = Alignment.BottomCenter) {
+            Row(
+                Modifier.clip(RoundedCornerShape(22.dp)).background(Color.Black.copy(alpha = .75f)).padding(horizontal = 14.dp, vertical = 8.dp),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                HostImage(h, Modifier.size(26.dp).clip(CircleShape), letterSize = 12.sp)
+                Text("  Connecting ${h.name}…", color = Color.White, fontSize = 13.sp)
+            }
+        }
+    }
 }
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 private fun RechargeSheet(act: MainActivity, msg: String, close: () -> Unit) {
     val cfg = RemoteConfig.current
     var sel by remember { mutableStateOf(cfg.packs.firstOrNull()) }
-    Dialog(close, DialogProperties(usePlatformDefaultWidth = false)) {
-        Box(Modifier.fillMaxSize().clickable(onClick = close), contentAlignment = Alignment.BottomCenter) {
-            Column(
-                Modifier.fillMaxWidth().clip(RoundedCornerShape(topStart = 24.dp, topEnd = 24.dp)).background(Brush.verticalGradient(listOf(Color.White, Color(0xFFF6EAFF))))
-                    .clickable(enabled = false) {}.navigationBarsPadding().padding(16.dp),
-            ) {
-                Row(verticalAlignment = Alignment.CenterVertically) {
-                    Box(Modifier.size(40.dp).clip(CircleShape).background(BrandGradient), contentAlignment = Alignment.Center) { Text("💎", fontSize = 18.sp) }
-                    Text(msg.ifBlank { "Choose a gems pack" }, fontSize = 13.sp, color = Color(0xFF333333), modifier = Modifier.padding(start = 10.dp).weight(1f))
-                    IconButton(close) { Text("✕", color = Color.Gray) }
-                }
-                Spacer(Modifier.height(10.dp))
-                cfg.packs.chunked(3).forEach { row ->
-                    Row(Modifier.fillMaxWidth().padding(bottom = 8.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
-                        row.forEach { p ->
-                            val on = sel == p
-                            Box(Modifier.weight(1f)) {
-                                Column(
-                                    Modifier.padding(top = 6.dp).fillMaxWidth().clip(RoundedCornerShape(14.dp))
-                                        .background(if (on) GoldGradient else Brush.linearGradient(listOf(Color.White, Color.White)))
-                                        .border(1.5.dp, if (on) Orange else Color(0xFFEEEEEE), RoundedCornerShape(14.dp))
-                                        .clickable { sel = p }.padding(vertical = 10.dp),
-                                    horizontalAlignment = Alignment.CenterHorizontally,
-                                ) {
-                                    Text("💎", fontSize = 22.sp)
-                                    Text("%,d".format(p.gems), fontWeight = FontWeight.ExtraBold, fontSize = 15.sp, color = if (on) Color.White else Color(0xFF222222))
-                                    Text(Billing.playPrice(p) ?: p.price, fontSize = 11.sp, fontWeight = FontWeight.Bold, color = if (on) Color.White else Orange)
-                                }
-                                if (p.off.isNotBlank()) Text(p.off, color = Color.White, fontSize = 9.sp, fontWeight = FontWeight.Bold,
-                                    modifier = Modifier.padding(start = 6.dp).clip(RoundedCornerShape(6.dp)).background(Color(0xFFFF5A3C)).padding(horizontal = 5.dp, vertical = 1.dp))
+    ModalBottomSheet(close, sheetState = rememberModalBottomSheetState(skipPartiallyExpanded = true), containerColor = Color(0xFFFBF5FF), dragHandle = null) {
+        Column(Modifier.fillMaxWidth().background(Brush.verticalGradient(listOf(Color.White, Color(0xFFF3E4FF)))).padding(16.dp)) {
+            Row(verticalAlignment = Alignment.CenterVertically) {
+                Box(Modifier.size(42.dp).clip(CircleShape).background(BrandGradient), contentAlignment = Alignment.Center) { Text("💎", fontSize = 19.sp) }
+                Text(msg.ifBlank { "Recharge gems to call, chat and send gifts" }, fontSize = 13.sp, color = Color(0xFF333333), modifier = Modifier.padding(start = 10.dp).weight(1f))
+                IconButton(close) { Icon(Icons.Default.Close, "Close", tint = Color.Gray) }
+            }
+            Spacer(Modifier.height(10.dp))
+            cfg.packs.chunked(3).forEach { row ->
+                Row(Modifier.fillMaxWidth().padding(bottom = 8.dp), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                    row.forEach { p ->
+                        val on = sel == p
+                        Box(Modifier.weight(1f)) {
+                            Column(
+                                Modifier.padding(top = 6.dp).fillMaxWidth().shadow(if (on) 6.dp else 1.dp, RoundedCornerShape(14.dp)).clip(RoundedCornerShape(14.dp))
+                                    .background(if (on) GoldGradient else SolidColor(Color.White))
+                                    .border(1.5.dp, if (on) Orange else Color(0xFFF0E8F7), RoundedCornerShape(14.dp))
+                                    .clickable { sel = p }.padding(vertical = 12.dp),
+                                horizontalAlignment = Alignment.CenterHorizontally,
+                            ) {
+                                Text(if (p.gems > 50000) "💎💎" else "💎", fontSize = 22.sp)
+                                Text("%,d".format(p.gems), fontWeight = FontWeight.ExtraBold, fontSize = 16.sp, color = if (on) Color.White else Ink, modifier = Modifier.padding(top = 2.dp))
+                                Text(
+                                    Billing.playPrice(p) ?: p.price, fontSize = 11.sp, fontWeight = FontWeight.Bold, color = if (on) Orange else Orange,
+                                    modifier = Modifier.padding(top = 4.dp).clip(RoundedCornerShape(10.dp)).background(if (on) Color.White else Color.Transparent).padding(horizontal = 10.dp, vertical = 2.dp),
+                                )
                             }
+                            if (p.off.isNotBlank()) Text(p.off, color = Color.White, fontSize = 9.sp, fontWeight = FontWeight.Bold,
+                                modifier = Modifier.padding(start = 4.dp).clip(RoundedCornerShape(topStart = 8.dp, bottomEnd = 8.dp)).background(Color(0xFFFF5A3C)).padding(horizontal = 6.dp, vertical = 1.dp))
                         }
-                        repeat(3 - row.size) { Spacer(Modifier.weight(1f)) }
                     }
-                }
-                Text("💎 My Gems: ${Store.gems.intValue}", fontSize = 13.sp, color = Color(0xFF555555), textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp))
-                val p = sel
-                val mode = cfg.paymentMode
-                if (mode == "play" || mode == "both") GradientButton(if (mode == "both") "Pay with Google Play" else "Continue") {
-                    if (p != null) { close(); Billing.buyPlay(act, p) }
-                }
-                if (mode == "both") Spacer(Modifier.height(8.dp))
-                if (mode == "cashfree" || mode == "both") GradientButton("Pay with UPI / Card", brush = GoldGradient) {
-                    if (p != null) { close(); Billing.buyCashfree(act, p) }
+                    repeat(3 - row.size) { Spacer(Modifier.weight(1f)) }
                 }
             }
+            Text("💎 My Gems: ${Store.gems.intValue}", fontSize = 13.sp, color = Color(0xFF555555), fontWeight = FontWeight.SemiBold, textAlign = TextAlign.Center, modifier = Modifier.fillMaxWidth().padding(vertical = 8.dp))
+            val p = sel
+            val mode = cfg.paymentMode
+            if (mode == "play" || mode == "both") GradientButton(if (mode == "both") "Pay with Google Play" else "Continue", height = 50) {
+                if (p != null) { close(); Billing.buyPlay(act, p) }
+            }
+            if (mode == "both") Spacer(Modifier.height(8.dp))
+            if (mode == "cashfree" || mode == "both") GradientButton("Pay with UPI / Card", brush = GoldGradient, height = 50) {
+                if (p != null) { close(); Billing.buyCashfree(act, p) }
+            }
+            Spacer(Modifier.height(8.dp))
         }
     }
 }

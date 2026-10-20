@@ -18,6 +18,7 @@ val Lilac = Color(0xFFF3E8FF)
 val LilacText = Color(0xFF7A12B8)
 val Night = Color(0xFF140F33)
 val SoftBg = Color(0xFFF8F3FD)
+val Ink = Color(0xFF1E1B26)
 
 val BrandGradient = Brush.linearGradient(listOf(Purple, Indigo, DeepBlue))
 val ButtonGradient = Brush.horizontalGradient(listOf(Purple, Indigo))
@@ -27,5 +28,5 @@ val PageGradient = Brush.verticalGradient(listOf(Color.White, Color(0xFFF7ECFF))
 
 @Composable
 fun ChatSetuTheme(content: @Composable () -> Unit) {
-    MaterialTheme(colorScheme = lightColorScheme(primary = Purple, secondary = Indigo, background = SoftBg, surface = Color.White), content = content)
+    MaterialTheme(colorScheme = lightColorScheme(primary = Purple, secondary = Indigo, background = SoftBg, surface = Color.White, onSurface = Ink, onBackground = Ink, surfaceContainerLow = Color.White), content = content)
 }

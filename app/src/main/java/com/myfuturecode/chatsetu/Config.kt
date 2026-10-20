@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit
 data class Host(
     val id: String, val name: String, val age: Int, val city: String, val lang: String, val bio: String,
     val tags: List<String>, val photos: List<String>, val video: String, val online: Boolean, val rate: Int,
-    val color: String, val virtual: Boolean, val script: List<ScriptMsg>?,
+    val color: String, val virtual: Boolean, val script: List<ScriptMsg>?, val followers: Int = 0,
 )
 
 /** Host ki taraf se aane wala message: text / image / voice / video. */
@@ -125,6 +125,7 @@ object RemoteConfig {
                     // Jab tak real host nahi, "virtual": true rehta hai aur UI me label dikhta hai
                     it.optBoolean("virtual", true),
                     it.optJSONArray("script")?.let { s -> script(s) },
+                    it.optInt("followers", 0),
                 )
             }.filter { it.id.isNotBlank() },
             chatScript = script(o.optJSONArray("chat_script")),

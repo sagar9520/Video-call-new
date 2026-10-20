@@ -1,0 +1,66 @@
+launch
+wait 4
+shot splash
+wait 12
+shot onboarding
+tap Enter your name
+type Rahul
+tap Select date
+wait 2
+shot datepicker
+tap OK
+wait 1
+tap I am 18+
+tap Continue
+wait 4
+shot discover_checkin
+tap Claim
+wait 2
+shot claimed
+key 4
+wait 2
+shot discover
+tap Riya
+wait 6
+shot profile
+tap + Follow
+wait 1
+shot followed
+tap Video call
+wait 3
+shot call_permission
+tap While using the app
+wait 8
+shot call
+tap Gift
+wait 2
+shot gifts
+tap Rose
+tap Send
+wait 1
+shot gift_sent
+tap Chat
+type hello
+wait 1
+shot call_chat
+tap End
+wait 3
+tap Chat
+wait 10
+shot chat
+key 4
+wait 1
+key 4
+wait 2
+tap Match
+wait 2
+shot match
+tap Messages
+wait 3
+shot messages
+tap Me
+wait 2
+shot me
+tap Recharge
+wait 3
+shot recharge
