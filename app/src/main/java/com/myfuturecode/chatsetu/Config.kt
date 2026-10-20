@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit
 data class Host(
     val id: String, val name: String, val age: Int, val city: String, val lang: String, val bio: String,
     val tags: List<String>, val photos: List<String>, val video: String, val online: Boolean, val rate: Int,
-    val color: String, val virtual: Boolean, val script: List<ScriptMsg>?, val followers: Int = 0,
+    val color: String, val virtual: Boolean, val script: List<ScriptMsg>?, val followers: Int = 0, val audioRate: Int = 30,
 )
 
 /** Host ki taraf se aane wala message: text / image / voice / video. */
@@ -39,6 +39,8 @@ data class AppConfig(
     val msgCost: Int,
     val filterCost: Int,
     val rewardedGems: Int,
+    val autoMessageEvery: Int,
+    val onlinePopupAfter: Int,
     val checkin: List<Int>,
     val paymentMode: String,          // play | cashfree | both
     val verifyUrl: String,
@@ -113,6 +115,8 @@ object RemoteConfig {
             msgCost = o.optInt("msg_cost", 1),
             filterCost = o.optInt("filter_cost", 5),
             rewardedGems = o.optInt("rewarded_gems", 5),
+            autoMessageEvery = o.optInt("auto_message_every", 60),
+            onlinePopupAfter = o.optInt("online_popup_after", 45),
             checkin = checkin?.takeIf { it.size == 7 } ?: listOf(50, 80, 50, 50, 50, 50, 100),
             paymentMode = o.optString("payment_mode", "play"),
             verifyUrl = o.optString("verify_url"),
@@ -126,6 +130,7 @@ object RemoteConfig {
                     it.optBoolean("virtual", true),
                     it.optJSONArray("script")?.let { s -> script(s) },
                     it.optInt("followers", 0),
+                    it.optInt("audio_rate", o.optInt("audio_rate", 30)),
                 )
             }.filter { it.id.isNotBlank() },
             chatScript = script(o.optJSONArray("chat_script")),

@@ -22,23 +22,79 @@
       "name": "Riya",
       "age": 23,
       "city": "Delhi",
-      "lang": "Hindi",
-      "bio": "Music aur dance pasand hai. Baat karte hain 😊",
+      "lang": "Hindi, English",
+      "bio": "Music aur dance pasand hai. Shaam ko chai aur gaane 🎶",
       "tags": [
         "Music",
-        "Dance"
+        "Dance",
+        "Chai"
       ],
       "photos": [
         "https://api.dicebear.com/9.x/lorelei/svg?seed=Riya&backgroundColor=ffd5dc",
         "https://picsum.photos/seed/riya1/600/800",
         "https://picsum.photos/seed/riya2/600/800",
-        "https://picsum.photos/seed/riya3/600/800"
+        "https://picsum.photos/seed/riya3/600/800",
+        "https://picsum.photos/seed/riya4/600/800"
       ],
       "video": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
       "online": true,
-      "rate": 60,
+      "rate": 70,
+      "audio_rate": 30,
       "color": "#C86DD7",
-      "followers": 1280
+      "followers": 1280,
+      "script": [
+        {
+          "type": "text",
+          "text": "Hii 👋 kaise ho?",
+          "delay": 2
+        },
+        {
+          "type": "text",
+          "text": "Aaj ka din kaisa raha?",
+          "delay": 3
+        },
+        {
+          "type": "image",
+          "url": "https://picsum.photos/seed/riyachat1/600/800",
+          "delay": 4
+        },
+        {
+          "type": "text",
+          "text": "Main abhi gaana sun rahi thi 🎶",
+          "delay": 3
+        },
+        {
+          "type": "voice",
+          "url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3",
+          "duration": 8,
+          "delay": 4
+        },
+        {
+          "type": "image",
+          "url": "https://picsum.photos/seed/riyachat2/600/800",
+          "delay": 4
+        },
+        {
+          "type": "video",
+          "url": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
+          "delay": 5
+        },
+        {
+          "type": "text",
+          "text": "Ye dekho meri shaam ki photo",
+          "delay": 3
+        },
+        {
+          "type": "text",
+          "text": "Tumhe kaunsa music pasand hai?",
+          "delay": 3
+        },
+        {
+          "type": "text",
+          "text": "Video call pe baat karein? 😊",
+          "delay": 3
+        }
+      ]
     },
     {
       "id": "h2",
@@ -46,7 +102,7 @@
       "age": 25,
       "city": "Mumbai",
       "lang": "Hindi, English",
-      "bio": "Travel aur movies ki shauqeen ✈",
+      "bio": "Travel aur movies ki shauqeen ✈ Goa meri favourite jagah",
       "tags": [
         "Travel",
         "Movies"
@@ -55,13 +111,63 @@
         "https://api.dicebear.com/9.x/lorelei/svg?seed=Anaya&backgroundColor=c0aede",
         "https://picsum.photos/seed/anaya1/600/800",
         "https://picsum.photos/seed/anaya2/600/800",
-        "https://picsum.photos/seed/anaya3/600/800"
+        "https://picsum.photos/seed/anaya3/600/800",
+        "https://picsum.photos/seed/anaya4/600/800"
       ],
       "video": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
       "online": true,
       "rate": 60,
+      "audio_rate": 30,
       "color": "#FF6A88",
-      "followers": 2304
+      "followers": 2304,
+      "script": [
+        {
+          "type": "text",
+          "text": "Hello! Kahan se ho aap?",
+          "delay": 2
+        },
+        {
+          "type": "text",
+          "text": "Main abhi trip plan kar rahi hoon ✈",
+          "delay": 3
+        },
+        {
+          "type": "image",
+          "url": "https://picsum.photos/seed/anayachat1/600/800",
+          "delay": 4
+        },
+        {
+          "type": "text",
+          "text": "Ye pichhli trip ki photo 🌊",
+          "delay": 3
+        },
+        {
+          "type": "voice",
+          "url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-2.mp3",
+          "duration": 9,
+          "delay": 4
+        },
+        {
+          "type": "image",
+          "url": "https://picsum.photos/seed/anayachat2/600/800",
+          "delay": 4
+        },
+        {
+          "type": "video",
+          "url": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+          "delay": 5
+        },
+        {
+          "type": "text",
+          "text": "Aapki favourite jagah kaunsi hai?",
+          "delay": 3
+        },
+        {
+          "type": "text",
+          "text": "Call pe batao na 😊",
+          "delay": 3
+        }
+      ]
     },
     {
       "id": "h3",
@@ -69,7 +175,7 @@
       "age": 24,
       "city": "Chennai",
       "lang": "Tamil, English",
-      "bio": "Cooking aur books 📚",
+      "bio": "Cooking aur books 📚 Filter coffee lover",
       "tags": [
         "Cooking",
         "Books"
@@ -78,13 +184,63 @@
         "https://api.dicebear.com/9.x/lorelei/svg?seed=Meera&backgroundColor=d1d4f9",
         "https://picsum.photos/seed/meera1/600/800",
         "https://picsum.photos/seed/meera2/600/800",
-        "https://picsum.photos/seed/meera3/600/800"
+        "https://picsum.photos/seed/meera3/600/800",
+        "https://picsum.photos/seed/meera4/600/800"
       ],
       "video": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
       "online": false,
-      "rate": 50,
+      "rate": 60,
+      "audio_rate": 30,
       "color": "#7F7FD5",
-      "followers": 860
+      "followers": 860,
+      "script": [
+        {
+          "type": "text",
+          "text": "Vanakkam 🙏",
+          "delay": 2
+        },
+        {
+          "type": "text",
+          "text": "Aaj maine kuch naya banaya",
+          "delay": 3
+        },
+        {
+          "type": "image",
+          "url": "https://picsum.photos/seed/meerachat1/600/800",
+          "delay": 4
+        },
+        {
+          "type": "text",
+          "text": "Dekho kaisa laga?",
+          "delay": 3
+        },
+        {
+          "type": "voice",
+          "url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-3.mp3",
+          "duration": 10,
+          "delay": 4
+        },
+        {
+          "type": "image",
+          "url": "https://picsum.photos/seed/meerachat2/600/800",
+          "delay": 4
+        },
+        {
+          "type": "video",
+          "url": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+          "delay": 5
+        },
+        {
+          "type": "text",
+          "text": "Aapko cooking aati hai?",
+          "delay": 3
+        },
+        {
+          "type": "text",
+          "text": "Free ho to call karo 📞",
+          "delay": 3
+        }
+      ]
     },
     {
       "id": "h4",
@@ -92,7 +248,7 @@
       "age": 22,
       "city": "Lucknow",
       "lang": "Urdu, Hindi",
-      "bio": "Shayari aur chai ☕",
+      "bio": "Shayari aur chai ☕ Purani Hindi movies",
       "tags": [
         "Poetry",
         "Music"
@@ -101,13 +257,63 @@
         "https://api.dicebear.com/9.x/lorelei/svg?seed=Sana&backgroundColor=ffdfbf",
         "https://picsum.photos/seed/sana1/600/800",
         "https://picsum.photos/seed/sana2/600/800",
-        "https://picsum.photos/seed/sana3/600/800"
+        "https://picsum.photos/seed/sana3/600/800",
+        "https://picsum.photos/seed/sana4/600/800"
       ],
       "video": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
       "online": true,
-      "rate": 60,
+      "rate": 70,
+      "audio_rate": 30,
       "color": "#F6A35C",
-      "followers": 3120
+      "followers": 3120,
+      "script": [
+        {
+          "type": "text",
+          "text": "Aadab 🌸",
+          "delay": 2
+        },
+        {
+          "type": "text",
+          "text": "Ek sher sunogi? Voice note bhej rahi hoon",
+          "delay": 3
+        },
+        {
+          "type": "image",
+          "url": "https://picsum.photos/seed/sanachat1/600/800",
+          "delay": 4
+        },
+        {
+          "type": "text",
+          "text": "Chai ho jaye? ☕",
+          "delay": 3
+        },
+        {
+          "type": "voice",
+          "url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-4.mp3",
+          "duration": 11,
+          "delay": 4
+        },
+        {
+          "type": "image",
+          "url": "https://picsum.photos/seed/sanachat2/600/800",
+          "delay": 4
+        },
+        {
+          "type": "video",
+          "url": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
+          "delay": 5
+        },
+        {
+          "type": "text",
+          "text": "Aapka din kaisa tha?",
+          "delay": 3
+        },
+        {
+          "type": "text",
+          "text": "Baat karte hain call pe",
+          "delay": 3
+        }
+      ]
     },
     {
       "id": "h5",
@@ -115,22 +321,78 @@
       "age": 26,
       "city": "Bengaluru",
       "lang": "Kannada, English",
-      "bio": "Gaming aur tech 🎮",
+      "bio": "Gaming aur tech 🎮 Weekend pe trekking",
       "tags": [
         "Gaming",
-        "Tech"
+        "Tech",
+        "Trekking"
       ],
       "photos": [
         "https://api.dicebear.com/9.x/lorelei/svg?seed=Kavya&backgroundColor=b6e3f4",
         "https://picsum.photos/seed/kavya1/600/800",
         "https://picsum.photos/seed/kavya2/600/800",
-        "https://picsum.photos/seed/kavya3/600/800"
+        "https://picsum.photos/seed/kavya3/600/800",
+        "https://picsum.photos/seed/kavya4/600/800"
       ],
       "video": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
       "online": true,
-      "rate": 70,
+      "rate": 60,
+      "audio_rate": 30,
       "color": "#43C6AC",
-      "followers": 1940
+      "followers": 1940,
+      "script": [
+        {
+          "type": "text",
+          "text": "Hii 👋 kaise ho?",
+          "delay": 2
+        },
+        {
+          "type": "text",
+          "text": "Aaj ka din kaisa raha?",
+          "delay": 3
+        },
+        {
+          "type": "image",
+          "url": "https://picsum.photos/seed/kavyachat1/600/800",
+          "delay": 4
+        },
+        {
+          "type": "text",
+          "text": "Main abhi gaana sun rahi thi 🎶",
+          "delay": 3
+        },
+        {
+          "type": "voice",
+          "url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-5.mp3",
+          "duration": 12,
+          "delay": 4
+        },
+        {
+          "type": "image",
+          "url": "https://picsum.photos/seed/kavyachat2/600/800",
+          "delay": 4
+        },
+        {
+          "type": "video",
+          "url": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
+          "delay": 5
+        },
+        {
+          "type": "text",
+          "text": "Ye dekho meri shaam ki photo",
+          "delay": 3
+        },
+        {
+          "type": "text",
+          "text": "Tumhe kaunsa music pasand hai?",
+          "delay": 3
+        },
+        {
+          "type": "text",
+          "text": "Video call pe baat karein? 😊",
+          "delay": 3
+        }
+      ]
     },
     {
       "id": "h6",
@@ -138,22 +400,72 @@
       "age": 24,
       "city": "Jaipur",
       "lang": "Hindi",
-      "bio": "Fashion aur photography 📸",
+      "bio": "Fashion aur photography 📸 Rajasthani khana best",
       "tags": [
         "Fashion",
         "Photos"
       ],
       "photos": [
-        "https://api.dicebear.com/9.x/lorelei/svg?seed=Pooja&backgroundColor=ffd5dc",
+        "https://api.dicebear.com/9.x/lorelei/svg?seed=Pooja&backgroundColor=f6d1ff",
         "https://picsum.photos/seed/pooja1/600/800",
         "https://picsum.photos/seed/pooja2/600/800",
-        "https://picsum.photos/seed/pooja3/600/800"
+        "https://picsum.photos/seed/pooja3/600/800",
+        "https://picsum.photos/seed/pooja4/600/800"
       ],
       "video": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
       "online": false,
-      "rate": 50,
+      "rate": 60,
+      "audio_rate": 30,
       "color": "#EE9CA7",
-      "followers": 710
+      "followers": 710,
+      "script": [
+        {
+          "type": "text",
+          "text": "Hello! Kahan se ho aap?",
+          "delay": 2
+        },
+        {
+          "type": "text",
+          "text": "Main abhi trip plan kar rahi hoon ✈",
+          "delay": 3
+        },
+        {
+          "type": "image",
+          "url": "https://picsum.photos/seed/poojachat1/600/800",
+          "delay": 4
+        },
+        {
+          "type": "text",
+          "text": "Ye pichhli trip ki photo 🌊",
+          "delay": 3
+        },
+        {
+          "type": "voice",
+          "url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-6.mp3",
+          "duration": 13,
+          "delay": 4
+        },
+        {
+          "type": "image",
+          "url": "https://picsum.photos/seed/poojachat2/600/800",
+          "delay": 4
+        },
+        {
+          "type": "video",
+          "url": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
+          "delay": 5
+        },
+        {
+          "type": "text",
+          "text": "Aapki favourite jagah kaunsi hai?",
+          "delay": 3
+        },
+        {
+          "type": "text",
+          "text": "Call pe batao na 😊",
+          "delay": 3
+        }
+      ]
     },
     {
       "id": "h7",
@@ -161,21 +473,71 @@
       "age": 23,
       "city": "Kolkata",
       "lang": "Bengali, Hindi",
-      "bio": "Painting aur music 🎨",
+      "bio": "Painting aur music 🎨 Rabindra sangeet",
       "tags": [
         "Art",
         "Music"
       ],
-      "video": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
-      "online": true,
-      "rate": 60,
-      "color": "#A18CD1",
-      "followers": 1520,
       "photos": [
-        "https://api.dicebear.com/9.x/lorelei/svg?seed=Ishita&backgroundColor=d1d4f9",
+        "https://api.dicebear.com/9.x/lorelei/svg?seed=Ishita&backgroundColor=ffd5dc",
         "https://picsum.photos/seed/ishita1/600/800",
         "https://picsum.photos/seed/ishita2/600/800",
-        "https://picsum.photos/seed/ishita3/600/800"
+        "https://picsum.photos/seed/ishita3/600/800",
+        "https://picsum.photos/seed/ishita4/600/800"
+      ],
+      "video": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+      "online": true,
+      "rate": 70,
+      "audio_rate": 30,
+      "color": "#A18CD1",
+      "followers": 1520,
+      "script": [
+        {
+          "type": "text",
+          "text": "Vanakkam 🙏",
+          "delay": 2
+        },
+        {
+          "type": "text",
+          "text": "Aaj maine kuch naya banaya",
+          "delay": 3
+        },
+        {
+          "type": "image",
+          "url": "https://picsum.photos/seed/ishitachat1/600/800",
+          "delay": 4
+        },
+        {
+          "type": "text",
+          "text": "Dekho kaisa laga?",
+          "delay": 3
+        },
+        {
+          "type": "voice",
+          "url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-7.mp3",
+          "duration": 14,
+          "delay": 4
+        },
+        {
+          "type": "image",
+          "url": "https://picsum.photos/seed/ishitachat2/600/800",
+          "delay": 4
+        },
+        {
+          "type": "video",
+          "url": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+          "delay": 5
+        },
+        {
+          "type": "text",
+          "text": "Aapko cooking aati hai?",
+          "delay": 3
+        },
+        {
+          "type": "text",
+          "text": "Free ho to call karo 📞",
+          "delay": 3
+        }
       ]
     },
     {
@@ -184,21 +546,368 @@
       "age": 25,
       "city": "Pune",
       "lang": "Marathi, Hindi",
-      "bio": "Fitness aur yoga 🧘",
+      "bio": "Fitness aur yoga 🧘 Subah ki run",
       "tags": [
         "Fitness",
         "Yoga"
       ],
+      "photos": [
+        "https://api.dicebear.com/9.x/lorelei/svg?seed=Nisha&backgroundColor=c0aede",
+        "https://picsum.photos/seed/nisha1/600/800",
+        "https://picsum.photos/seed/nisha2/600/800",
+        "https://picsum.photos/seed/nisha3/600/800",
+        "https://picsum.photos/seed/nisha4/600/800"
+      ],
+      "video": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+      "online": true,
+      "rate": 60,
+      "audio_rate": 30,
+      "color": "#FBC2EB",
+      "followers": 980,
+      "script": [
+        {
+          "type": "text",
+          "text": "Aadab 🌸",
+          "delay": 2
+        },
+        {
+          "type": "text",
+          "text": "Ek sher sunogi? Voice note bhej rahi hoon",
+          "delay": 3
+        },
+        {
+          "type": "image",
+          "url": "https://picsum.photos/seed/nishachat1/600/800",
+          "delay": 4
+        },
+        {
+          "type": "text",
+          "text": "Chai ho jaye? ☕",
+          "delay": 3
+        },
+        {
+          "type": "voice",
+          "url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-8.mp3",
+          "duration": 15,
+          "delay": 4
+        },
+        {
+          "type": "image",
+          "url": "https://picsum.photos/seed/nishachat2/600/800",
+          "delay": 4
+        },
+        {
+          "type": "video",
+          "url": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerEscapes.mp4",
+          "delay": 5
+        },
+        {
+          "type": "text",
+          "text": "Aapka din kaisa tha?",
+          "delay": 3
+        },
+        {
+          "type": "text",
+          "text": "Baat karte hain call pe",
+          "delay": 3
+        }
+      ]
+    },
+    {
+      "id": "h9",
+      "name": "Aditi",
+      "age": 24,
+      "city": "Hyderabad",
+      "lang": "Telugu, English",
+      "bio": "Biryani aur K-dramas 🍲",
+      "tags": [
+        "Food",
+        "Dramas"
+      ],
+      "photos": [
+        "https://api.dicebear.com/9.x/lorelei/svg?seed=Aditi&backgroundColor=d1d4f9",
+        "https://picsum.photos/seed/aditi1/600/800",
+        "https://picsum.photos/seed/aditi2/600/800",
+        "https://picsum.photos/seed/aditi3/600/800",
+        "https://picsum.photos/seed/aditi4/600/800"
+      ],
       "video": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
       "online": true,
       "rate": 60,
-      "color": "#FBC2EB",
-      "followers": 980,
+      "audio_rate": 30,
+      "color": "#F093FB",
+      "followers": 1675,
+      "script": [
+        {
+          "type": "text",
+          "text": "Hii 👋 kaise ho?",
+          "delay": 2
+        },
+        {
+          "type": "text",
+          "text": "Aaj ka din kaisa raha?",
+          "delay": 3
+        },
+        {
+          "type": "image",
+          "url": "https://picsum.photos/seed/aditichat1/600/800",
+          "delay": 4
+        },
+        {
+          "type": "text",
+          "text": "Main abhi gaana sun rahi thi 🎶",
+          "delay": 3
+        },
+        {
+          "type": "voice",
+          "url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-9.mp3",
+          "duration": 16,
+          "delay": 4
+        },
+        {
+          "type": "image",
+          "url": "https://picsum.photos/seed/aditichat2/600/800",
+          "delay": 4
+        },
+        {
+          "type": "video",
+          "url": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerFun.mp4",
+          "delay": 5
+        },
+        {
+          "type": "text",
+          "text": "Ye dekho meri shaam ki photo",
+          "delay": 3
+        },
+        {
+          "type": "text",
+          "text": "Tumhe kaunsa music pasand hai?",
+          "delay": 3
+        },
+        {
+          "type": "text",
+          "text": "Video call pe baat karein? 😊",
+          "delay": 3
+        }
+      ]
+    },
+    {
+      "id": "h10",
+      "name": "Tanya",
+      "age": 22,
+      "city": "Chandigarh",
+      "lang": "Punjabi, Hindi",
+      "bio": "Bhangra aur road trips 🚗",
+      "tags": [
+        "Dance",
+        "Travel"
+      ],
       "photos": [
-        "https://api.dicebear.com/9.x/lorelei/svg?seed=Nisha&backgroundColor=ffdfbf",
-        "https://picsum.photos/seed/nisha1/600/800",
-        "https://picsum.photos/seed/nisha2/600/800",
-        "https://picsum.photos/seed/nisha3/600/800"
+        "https://api.dicebear.com/9.x/lorelei/svg?seed=Tanya&backgroundColor=ffdfbf",
+        "https://picsum.photos/seed/tanya1/600/800",
+        "https://picsum.photos/seed/tanya2/600/800",
+        "https://picsum.photos/seed/tanya3/600/800",
+        "https://picsum.photos/seed/tanya4/600/800"
+      ],
+      "video": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
+      "online": true,
+      "rate": 70,
+      "audio_rate": 30,
+      "color": "#FDA085",
+      "followers": 2210,
+      "script": [
+        {
+          "type": "text",
+          "text": "Hello! Kahan se ho aap?",
+          "delay": 2
+        },
+        {
+          "type": "text",
+          "text": "Main abhi trip plan kar rahi hoon ✈",
+          "delay": 3
+        },
+        {
+          "type": "image",
+          "url": "https://picsum.photos/seed/tanyachat1/600/800",
+          "delay": 4
+        },
+        {
+          "type": "text",
+          "text": "Ye pichhli trip ki photo 🌊",
+          "delay": 3
+        },
+        {
+          "type": "voice",
+          "url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-10.mp3",
+          "duration": 17,
+          "delay": 4
+        },
+        {
+          "type": "image",
+          "url": "https://picsum.photos/seed/tanyachat2/600/800",
+          "delay": 4
+        },
+        {
+          "type": "video",
+          "url": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerMeltdowns.mp4",
+          "delay": 5
+        },
+        {
+          "type": "text",
+          "text": "Aapki favourite jagah kaunsi hai?",
+          "delay": 3
+        },
+        {
+          "type": "text",
+          "text": "Call pe batao na 😊",
+          "delay": 3
+        }
+      ]
+    },
+    {
+      "id": "h11",
+      "name": "Neha",
+      "age": 27,
+      "city": "Ahmedabad",
+      "lang": "Gujarati, Hindi",
+      "bio": "Garba queen 💃 aur street food",
+      "tags": [
+        "Dance",
+        "Food"
+      ],
+      "photos": [
+        "https://api.dicebear.com/9.x/lorelei/svg?seed=Neha&backgroundColor=b6e3f4",
+        "https://picsum.photos/seed/neha1/600/800",
+        "https://picsum.photos/seed/neha2/600/800",
+        "https://picsum.photos/seed/neha3/600/800",
+        "https://picsum.photos/seed/neha4/600/800"
+      ],
+      "video": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
+      "online": false,
+      "rate": 60,
+      "audio_rate": 30,
+      "color": "#84FAB0",
+      "followers": 640,
+      "script": [
+        {
+          "type": "text",
+          "text": "Vanakkam 🙏",
+          "delay": 2
+        },
+        {
+          "type": "text",
+          "text": "Aaj maine kuch naya banaya",
+          "delay": 3
+        },
+        {
+          "type": "image",
+          "url": "https://picsum.photos/seed/nehachat1/600/800",
+          "delay": 4
+        },
+        {
+          "type": "text",
+          "text": "Dekho kaisa laga?",
+          "delay": 3
+        },
+        {
+          "type": "voice",
+          "url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-11.mp3",
+          "duration": 18,
+          "delay": 4
+        },
+        {
+          "type": "image",
+          "url": "https://picsum.photos/seed/nehachat2/600/800",
+          "delay": 4
+        },
+        {
+          "type": "video",
+          "url": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerJoyrides.mp4",
+          "delay": 5
+        },
+        {
+          "type": "text",
+          "text": "Aapko cooking aati hai?",
+          "delay": 3
+        },
+        {
+          "type": "text",
+          "text": "Free ho to call karo 📞",
+          "delay": 3
+        }
+      ]
+    },
+    {
+      "id": "h12",
+      "name": "Simran",
+      "age": 23,
+      "city": "Amritsar",
+      "lang": "Punjabi",
+      "bio": "Music aur long drives 🎧",
+      "tags": [
+        "Music",
+        "Drives"
+      ],
+      "photos": [
+        "https://api.dicebear.com/9.x/lorelei/svg?seed=Simran&backgroundColor=f6d1ff",
+        "https://picsum.photos/seed/simran1/600/800",
+        "https://picsum.photos/seed/simran2/600/800",
+        "https://picsum.photos/seed/simran3/600/800",
+        "https://picsum.photos/seed/simran4/600/800"
+      ],
+      "video": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+      "online": true,
+      "rate": 60,
+      "audio_rate": 30,
+      "color": "#8FD3F4",
+      "followers": 1890,
+      "script": [
+        {
+          "type": "text",
+          "text": "Aadab 🌸",
+          "delay": 2
+        },
+        {
+          "type": "text",
+          "text": "Ek sher sunogi? Voice note bhej rahi hoon",
+          "delay": 3
+        },
+        {
+          "type": "image",
+          "url": "https://picsum.photos/seed/simranchat1/600/800",
+          "delay": 4
+        },
+        {
+          "type": "text",
+          "text": "Chai ho jaye? ☕",
+          "delay": 3
+        },
+        {
+          "type": "voice",
+          "url": "https://www.soundhelix.com/examples/mp3/SoundHelix-Song-12.mp3",
+          "duration": 19,
+          "delay": 4
+        },
+        {
+          "type": "image",
+          "url": "https://picsum.photos/seed/simranchat2/600/800",
+          "delay": 4
+        },
+        {
+          "type": "video",
+          "url": "https://storage.googleapis.com/gtv-videos-bucket/sample/ForBiggerBlazes.mp4",
+          "delay": 5
+        },
+        {
+          "type": "text",
+          "text": "Aapka din kaisa tha?",
+          "delay": 3
+        },
+        {
+          "type": "text",
+          "text": "Baat karte hain call pe",
+          "delay": 3
+        }
       ]
     }
   ],
@@ -411,5 +1120,8 @@
       "rewarded": ""
     }
   },
-  "cross_promo": []
+  "cross_promo": [],
+  "audio_rate": 30,
+  "auto_message_every": 60,
+  "online_popup_after": 45
 }

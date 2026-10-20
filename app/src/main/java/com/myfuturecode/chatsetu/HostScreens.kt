@@ -59,6 +59,15 @@ import androidx.compose.material3.rememberModalBottomSheetState
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.draw.shadow
 import androidx.compose.material.icons.filled.Close
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.core.rememberInfiniteTransition
+import androidx.compose.animation.core.infiniteRepeatable
+import androidx.compose.animation.core.animateFloat
+import androidx.compose.animation.core.RepeatMode
+import androidx.compose.ui.draw.scale
+import androidx.compose.ui.draw.blur
+import androidx.compose.material.icons.automirrored.filled.VolumeOff
+import androidx.compose.material.icons.automirrored.filled.VolumeUp
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
@@ -160,6 +169,10 @@ fun ProfileScreen(act: MainActivity, hostId: String) {
                 Modifier.weight(1f).height(50.dp).clip(RoundedCornerShape(25.dp)).background(Lilac).clickable { act.push(Route.Chat(h.id)) },
                 contentAlignment = Alignment.Center,
             ) { Text("💬 Chat", color = LilacText, fontWeight = FontWeight.Bold) }
+            Box(
+                Modifier.size(50.dp).clip(CircleShape).background(Color(0xFFE8F8F0)).clickable { act.startCall(h.id, audio = true) },
+                contentAlignment = Alignment.Center,
+            ) { Icon(Icons.Default.Call, "Voice call", tint = Green) }
             GradientButton("📹 Video call · ${h.rate}💎/min", Modifier.weight(1.5f), brush = CallGradient, height = 50) { act.startCall(h.id) }
         }
     }
@@ -244,6 +257,7 @@ fun ChatScreen(act: MainActivity, hostId: String) {
                 Row(verticalAlignment = Alignment.CenterVertically) { Text(h.name, fontWeight = FontWeight.Bold); Spacer(Modifier.width(6.dp)); VirtualTag(h, dark = false) }
                 Text(if (typing) "typing…" else if (h.online) "● Online" else "Offline", fontSize = 11.sp, color = if (h.online || typing) Green else Color.Gray)
             }
+            IconButton({ act.startCall(h.id, audio = true) }) { Icon(Icons.Default.Call, "Voice call", tint = Green) }
             IconButton({ act.startCall(h.id) }) { Icon(Icons.Default.Videocam, "Video call", tint = Purple) }
         }
         LazyColumn(Modifier.weight(1f), state = list, contentPadding = PaddingValues(vertical = 10.dp)) {
@@ -352,9 +366,12 @@ fun LoopVideo(url: String, modifier: Modifier, muted: Boolean, fit: Boolean = fa
 // ---------------- Video call ----------------
 
 @Composable
-fun CallScreen(act: MainActivity, hostId: String, fromMatch: Boolean) {
+fun CallScreen(act: MainActivity, hostId: String, fromMatch: Boolean, audio: Boolean = false) {
     val h = act.host(hostId) ?: run { act.back(); return }
     val ctx = LocalContext.current
+    val rate = if (audio) h.audioRate else h.rate
+    val kind = if (audio) "voice" else "video"
+    var speaker by remember { mutableStateOf(true) }
     var connecting by remember { mutableStateOf(true) }
     var seconds by remember { mutableIntStateOf(0) }
     var micOn by remember { mutableStateOf(true) }
@@ -377,15 +394,15 @@ fun CallScreen(act: MainActivity, hostId: String, fromMatch: Boolean) {
     }
 
     LaunchedEffect(Unit) {
-        if (!camAllowed) askCam.launch(Manifest.permission.CAMERA)
+        if (!audio && !camAllowed) askCam.launch(Manifest.permission.CAMERA)
         // Pehla minute shuru me hi katega
-        if (!Store.spend(h.rate)) { act.back(); act.recharge = "Recharge to start a video call with ${h.name}"; return@LaunchedEffect }
+        if (!Store.spend(rate)) { act.back(); act.recharge = "Recharge to start a $kind call with ${h.name}"; return@LaunchedEffect }
         delay(if (fromMatch) 1200 else 2200)
         connecting = false
         while (true) {
             delay(1000)
             seconds++
-            if (seconds % 60 == 0 && !Store.spend(h.rate)) {
+            if (seconds % 60 == 0 && !Store.spend(rate)) {
                 act.back(); act.recharge = "Recharge to continue the call with ${h.name}"; break
             }
         }
@@ -401,15 +418,29 @@ fun CallScreen(act: MainActivity, hostId: String, fromMatch: Boolean) {
 
     DarkStatusBar()
     Box(Modifier.fillMaxSize().background(Color.Black)) {
-        if (h.video.isNotBlank()) LoopVideo(h.video, Modifier.fillMaxSize(), muted = false)
+        if (audio) {
+            // Voice call: badi photo dhundhli + beech me avatar; awaz host ke clip se (demo)
+            HostImage(h, Modifier.fillMaxSize().blur(28.dp), index = 1, letterSize = 120.sp)
+            Box(Modifier.fillMaxSize().background(Color.Black.copy(alpha = .35f)))
+            if (!connecting && h.video.isNotBlank() && speaker) LoopVideo(h.video, Modifier.size(1.dp), muted = false)
+            val pulse = rememberInfiniteTransition(label = "v").animateFloat(1f, 1.25f, infiniteRepeatable(tween(900), RepeatMode.Reverse), label = "p")
+            Column(Modifier.align(Alignment.Center).padding(bottom = 80.dp), horizontalAlignment = Alignment.CenterHorizontally) {
+                Box(contentAlignment = Alignment.Center) {
+                    Box(Modifier.size(150.dp).scale(if (connecting) 1f else pulse.value).clip(CircleShape).background(Color.White.copy(alpha = .15f)))
+                    HostImage(h, Modifier.size(130.dp).clip(CircleShape).border(3.dp, Color.White, CircleShape), letterSize = 50.sp)
+                }
+                Text(h.name, color = Color.White, fontSize = 24.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(top = 18.dp))
+                Text(if (connecting) "Calling…" else "Voice call · %d:%02d".format(seconds / 60, seconds % 60), color = Color.White.copy(alpha = .85f), modifier = Modifier.padding(top = 4.dp))
+            }
+        } else if (h.video.isNotBlank()) LoopVideo(h.video, Modifier.fillMaxSize(), muted = false)
         else HostImage(h, Modifier.fillMaxSize(), letterSize = 120.sp)
 
-        if (connecting) Box(Modifier.fillMaxSize().background(hostBrush(h)), contentAlignment = Alignment.Center) {
+        if (connecting && !audio) Box(Modifier.fillMaxSize().background(hostBrush(h)), contentAlignment = Alignment.Center) {
             Column(horizontalAlignment = Alignment.CenterHorizontally) {
                 HostImage(h, Modifier.size(110.dp).clip(CircleShape).border(3.dp, Color.White, CircleShape), letterSize = 44.sp)
                 Text(h.name, color = Color.White, fontSize = 22.sp, fontWeight = FontWeight.Bold, modifier = Modifier.padding(top = 14.dp))
                 Text(if (fromMatch) "Matched! Connecting…" else "Calling…", color = Color.White.copy(alpha = .85f), modifier = Modifier.padding(top = 4.dp))
-                Text("${h.rate} 💎 / min", color = Color.White.copy(alpha = .7f), fontSize = 12.sp, modifier = Modifier.padding(top = 6.dp))
+                Text("${if (audio) "Voice call" else "Video call"} · $rate 💎 / min", color = Color.White.copy(alpha = .7f), fontSize = 12.sp, modifier = Modifier.padding(top = 6.dp))
             }
         }
 
@@ -418,7 +449,7 @@ fun CallScreen(act: MainActivity, hostId: String, fromMatch: Boolean) {
             HostImage(h, Modifier.size(38.dp).clip(CircleShape).border(2.dp, Color.White, CircleShape), letterSize = 16.sp)
             Column(Modifier.padding(start = 8.dp).weight(1f)) {
                 Row(verticalAlignment = Alignment.CenterVertically) { Text(h.name, color = Color.White, fontWeight = FontWeight.Bold); Spacer(Modifier.width(6.dp)); VirtualTag(h) }
-                Text("💎 ${Store.gems.intValue} · -${h.rate}/min", color = Color.White.copy(alpha = .85f), fontSize = 11.sp)
+                Text("💎 ${Store.gems.intValue} · -$rate/min", color = Color.White.copy(alpha = .85f), fontSize = 11.sp)
             }
             if (!connecting) Text("%d:%02d".format(seconds / 60, seconds % 60), color = Color.White, fontSize = 12.sp,
                 modifier = Modifier.clip(RoundedCornerShape(12.dp)).background(Color.Black.copy(alpha = .4f)).padding(horizontal = 10.dp, vertical = 4.dp))
@@ -429,7 +460,7 @@ fun CallScreen(act: MainActivity, hostId: String, fromMatch: Boolean) {
         }
 
         // Apna camera (chhota box)
-        Box(
+        if (!audio) Box(
             Modifier.statusBarsPadding().padding(top = 64.dp, end = 12.dp).align(Alignment.TopEnd).size(width = 100.dp, height = 140.dp)
                 .clip(RoundedCornerShape(14.dp)).background(Color(0xFF2B2357)).border(2.dp, Color.White.copy(alpha = .5f), RoundedCornerShape(14.dp)),
             contentAlignment = Alignment.Center,
@@ -480,9 +511,10 @@ fun CallScreen(act: MainActivity, hostId: String, fromMatch: Boolean) {
             horizontalArrangement = Arrangement.SpaceEvenly, verticalAlignment = Alignment.CenterVertically,
         ) {
             CallBtn(if (micOn) Icons.Default.Mic else Icons.Default.MicOff, "Mic") { micOn = !micOn }
-            CallBtn(if (camOn) Icons.Default.Videocam else Icons.Default.VideocamOff, "Camera") { camOn = !camOn }
+            if (audio) CallBtn(if (speaker) Icons.AutoMirrored.Filled.VolumeUp else Icons.AutoMirrored.Filled.VolumeOff, "Speaker") { speaker = !speaker }
+            else CallBtn(if (camOn) Icons.Default.Videocam else Icons.Default.VideocamOff, "Camera") { camOn = !camOn }
             CallBtn(Icons.Default.CallEnd, "End", size = 62, bg = Brush.linearGradient(listOf(Red, Red))) { end() }
-            CallBtn(Icons.Default.Cameraswitch, "Flip") { front = !front }
+            if (!audio) CallBtn(Icons.Default.Cameraswitch, "Flip") { front = !front }
             CallBtn(Icons.Default.CardGiftcard, "Gift") { gifts = true }
             CallBtn(Icons.AutoMirrored.Filled.Chat, "Chat") { chatOpen = !chatOpen }
         }
@@ -631,6 +663,23 @@ fun Overlays(act: MainActivity) {
     act.recharge?.let { msg -> RechargeSheet(act, msg) { act.recharge = null } }
     if (act.lowGems) LowGemsDialog(act)
     if (act.checkin) CheckinDialog(act)
+    act.banner?.let { (h, text) ->
+        Box(Modifier.fillMaxSize().statusBarsPadding().padding(10.dp), contentAlignment = Alignment.TopCenter) {
+            Row(
+                Modifier.fillMaxWidth().shadow(10.dp, RoundedCornerShape(18.dp)).clip(RoundedCornerShape(18.dp)).background(Color.White)
+                    .clickable { act.banner = null; act.push(Route.Chat(h.id)) }.padding(10.dp),
+                verticalAlignment = Alignment.CenterVertically,
+            ) {
+                HostImage(h, Modifier.size(42.dp).clip(CircleShape), letterSize = 16.sp)
+                Column(Modifier.padding(start = 10.dp).weight(1f)) {
+                    Row(verticalAlignment = Alignment.CenterVertically) { Text(h.name, fontWeight = FontWeight.Bold, color = Ink); Spacer(Modifier.width(6.dp)); VirtualTag(h, dark = false) }
+                    Text(text, fontSize = 13.sp, color = Color.Gray, maxLines = 1)
+                }
+                Text("Reply", color = Purple, fontWeight = FontWeight.Bold, fontSize = 13.sp)
+            }
+        }
+    }
+    act.onlineSuggest?.let { h -> OnlineCard(act, h) }
     act.connectingHost?.let { h ->
         Box(Modifier.fillMaxSize().navigationBarsPadding().padding(bottom = 90.dp), contentAlignment = Alignment.BottomCenter) {
             Row(
@@ -639,6 +688,30 @@ fun Overlays(act: MainActivity) {
             ) {
                 HostImage(h, Modifier.size(26.dp).clip(CircleShape), letterSize = 12.sp)
                 Text("  Connecting ${h.name}…", color = Color.White, fontSize = 13.sp)
+            }
+        }
+    }
+}
+
+/** "X abhi online hai" card: user khud call/chat chune (koi nakli incoming call nahi). */
+@Composable
+private fun OnlineCard(act: MainActivity, h: Host) {
+    Dialog({ act.onlineSuggest = null }) {
+        Column(Modifier.width(290.dp).clip(RoundedCornerShape(24.dp)).background(Color.White)) {
+            Box(Modifier.fillMaxWidth().height(250.dp)) {
+                HostImage(h, Modifier.fillMaxSize(), index = 1, letterSize = 80.sp)
+                Row(Modifier.fillMaxWidth().padding(10.dp), horizontalArrangement = Arrangement.SpaceBetween) { VirtualTag(h); OnlineDot(true) }
+                Column(Modifier.align(Alignment.BottomStart).fillMaxWidth().background(Brush.verticalGradient(listOf(Color.Transparent, Color.Black.copy(alpha = .7f)))).padding(14.dp)) {
+                    Text("${h.name}, ${h.age}", color = Color.White, fontWeight = FontWeight.ExtraBold, fontSize = 20.sp)
+                    Text("is online now · ${h.city}", color = Color.White.copy(alpha = .85f), fontSize = 13.sp)
+                }
+                IconButton({ act.onlineSuggest = null }, Modifier.align(Alignment.TopEnd).padding(top = 30.dp)) { Icon(Icons.Default.Close, "Close", tint = Color.White) }
+            }
+            Row(Modifier.padding(14.dp), horizontalArrangement = Arrangement.spacedBy(10.dp)) {
+                Box(Modifier.weight(1f).height(46.dp).clip(RoundedCornerShape(23.dp)).background(Lilac).clickable { act.onlineSuggest = null; act.push(Route.Chat(h.id)) }, contentAlignment = Alignment.Center) {
+                    Text("💬 Chat", color = LilacText, fontWeight = FontWeight.Bold)
+                }
+                GradientButton("📹 Call", Modifier.weight(1f), brush = CallGradient, height = 46) { act.startCall(h.id) }
             }
         }
     }

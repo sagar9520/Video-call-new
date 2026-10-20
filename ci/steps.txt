@@ -48,6 +48,11 @@ wait 3
 tap Chat
 wait 10
 shot chat
+tap Voice call
+wait 6
+shot voice_call
+tap End
+wait 2
 key 4
 wait 1
 key 4
@@ -64,3 +69,6 @@ shot me
 tap Recharge
 wait 3
 shot recharge
+key 4
+wait 50
+shot auto_activity

@@ -24,7 +24,7 @@ sealed class Route {
     data class Main(val tab: Int = 0) : Route()
     data class Profile(val hostId: String) : Route()
     data class Chat(val hostId: String) : Route()
-    data class Call(val hostId: String, val fromMatch: Boolean = false) : Route()
+    data class Call(val hostId: String, val fromMatch: Boolean = false, val audio: Boolean = false) : Route()
     data object Purchases : Route()
     data object Blocked : Route()
     data object EditProfile : Route()
@@ -39,7 +39,9 @@ class MainActivity : ComponentActivity() {
     var lowGems by mutableStateOf(false)
     var checkin by mutableStateOf(false)
     var mainTab by mutableStateOf(0)
-    var connectingHost by mutableStateOf<Host?>(null)   // "Connecting" pill (original jaisa)
+    var connectingHost by mutableStateOf<Host?>(null)
+    var onlineSuggest by mutableStateOf<Host?>(null)
+    var banner by mutableStateOf<Pair<Host, String>?>(null)   // "Connecting" pill (original jaisa)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -58,7 +60,7 @@ class MainActivity : ComponentActivity() {
                         is Route.Main -> MainScreen(this@MainActivity)
                         is Route.Profile -> ProfileScreen(this@MainActivity, r.hostId)
                         is Route.Chat -> ChatScreen(this@MainActivity, r.hostId)
-                        is Route.Call -> CallScreen(this@MainActivity, r.hostId, r.fromMatch)
+                        is Route.Call -> CallScreen(this@MainActivity, r.hostId, r.fromMatch, r.audio)
                         Route.Purchases -> PurchasesScreen(this@MainActivity)
                         Route.Blocked -> BlockedScreen(this@MainActivity)
                         Route.EditProfile -> EditProfileScreen(this@MainActivity)
@@ -72,8 +74,11 @@ class MainActivity : ComponentActivity() {
         }
     }
 
+    private var demoStarted = false
+
     override fun onResume() {
         super.onResume()
+        if (!demoStarted) { demoStarted = true; lifecycleScope.launch { kotlinx.coroutines.delay(15000); demoActivityLoop() } }
         // Cashfree se wapas aaye to pending order check
         lifecycleScope.launch { Billing.verifyPending() }
     }
@@ -89,14 +94,47 @@ class MainActivity : ComponentActivity() {
         else if (route is Route.Main && mainTab != 0) mainTab = 0
     }
 
-    /** Video call: gems kaafi hain to call screen, warna thoda "Connecting" dikha ke recharge sheet. */
-    fun startCall(hostId: String, fromMatch: Boolean = false) {
+    /** Call: gems kaafi hain to call screen, warna thoda "Connecting" dikha ke recharge sheet. */
+    fun startCall(hostId: String, fromMatch: Boolean = false, audio: Boolean = false) {
         val h = host(hostId) ?: return
-        if (Store.gems.intValue >= h.rate) { push(Route.Call(h.id, fromMatch)); return }
+        onlineSuggest = null
+        if (Store.gems.intValue >= (if (audio) h.audioRate else h.rate)) { push(Route.Call(h.id, fromMatch, audio)); return }
         connectingHost = h
         lifecycleScope.launch {
             kotlinx.coroutines.delay(1500)
-            if (connectingHost == h) { connectingHost = null; recharge = "Recharge to start a video call with ${h.name}" }
+            if (connectingHost == h) { connectingHost = null; recharge = "Recharge to start a ${if (audio) "voice" else "video"} call with ${h.name}" }
+        }
+    }
+
+    /**
+     * Demo activity: app khuli ho to thodi-thodi der me online (Virtual) hosts ke agle script messages
+     * inbox me aate hain, upar chhota banner dikhta hai. Ek baar "X is online" card bhi aata hai.
+     * Sab timing/content config se ("auto_message_every", "online_popup_after", host "script").
+     */
+    private suspend fun demoActivityLoop() {
+        val cfg = RemoteConfig.current
+        var suggested = false
+        var elapsed = 0
+        while (true) {
+            kotlinx.coroutines.delay(5000); elapsed += 5
+            val onMain = route is Route.Main && recharge == null && !checkin && !lowGems
+            if (!onMain) continue
+            if (!suggested && cfg.onlinePopupAfter > 0 && elapsed >= cfg.onlinePopupAfter) {
+                suggested = true
+                onlineSuggest = cfg.hosts.filter { it.online && it.id !in Store.blocked }.randomOrNull()
+                continue
+            }
+            if (cfg.autoMessageEvery > 0 && elapsed % cfg.autoMessageEvery == 0) {
+                val h = cfg.hosts.filter { it.online && it.id !in Store.blocked }.shuffled().firstOrNull { h ->
+                    (h.script ?: cfg.chatScript).size > (Store.scriptPos[h.id] ?: 0)
+                } ?: continue
+                val m = (h.script ?: cfg.chatScript)[Store.scriptPos[h.id] ?: 0]
+                Store.addMsg(h.id, ChatMsg(false, m.type, m.text, m.url, m.duration, System.currentTimeMillis()), countUnread = true)
+                Store.advanceScript(h.id)
+                banner = h to preview(ChatMsg(false, m.type, m.text, m.url, m.duration, 0))
+                kotlinx.coroutines.delay(3500)
+                banner = null
+            }
         }
     }
 
